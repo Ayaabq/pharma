@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pharma/screens/login.dart';
-import 'package:pharma/screens/register.dart';
+import 'package:pharma/screens/rigex_sreens/login.dart';
+import 'package:pharma/screens/rigex_sreens/register.dart';
+import 'package:pharma/screens/rigex_sreens/splash.dart';
 import 'package:pharma/widgets/rigix/T_button.dart';
 import 'package:pharma/widgets/rigix/forms_text_field.dart';
 import 'package:pharma/widgets/rigix/rounded_button.dart';
@@ -22,7 +23,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
 
       home: Scaffold(
-        body:RegisterScreen()
+        body:SplashScreen()
     //     Column(mainAxisAlignment: MainAxisAlignment.center,
     //       children: [
     //         Form(

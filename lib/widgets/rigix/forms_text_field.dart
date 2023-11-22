@@ -22,10 +22,10 @@ Map<FormsTopic,IconData> kFormIcon={
 
 class FormsTextField extends StatefulWidget {
 
-  FormsTextField({super.key, required this.topic, required this.label});
+  FormsTextField({super.key, required this.topic, required this.label, required this.ctrl});
     FormsTopic topic;
     String label;
-
+    TextEditingController ctrl;
   @override
   State<FormsTextField> createState() => _FormsTextFieldState();
 }
@@ -56,6 +56,7 @@ class _FormsTextFieldState extends State<FormsTextField> {
      //     if(widget.topic==FormsTopic.confirmPassword && value!=password) {
      //   return "passwords are not the same";
      // }
+
      return  null;
 
    }
@@ -66,7 +67,7 @@ class _FormsTextFieldState extends State<FormsTextField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: TextFormField(
-        controller: TextEditingController(),
+        controller:widget.ctrl,
 
         autofocus: true,
         keyboardType: kFormTextInputType[widget.topic],

@@ -1,30 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:pharma/screens/home.dart';
-import 'package:pharma/screens/login.dart';
+import 'package:pharma/screens/rigex_sreens/login.dart';
 
-import '../widgets/rigix/T_button.dart';
-import '../widgets/rigix/forms_text_field.dart';
-import '../widgets/rigix/rigix_text.dart';
-import '../widgets/rigix/rounded_button.dart';
-class RegisterScreen extends StatelessWidget {
-   RegisterScreen({super.key});
+import '../../widgets/rigix/T_button.dart';
+import '../../widgets/rigix/forms_text_field.dart';
+import '../../widgets/rigix/rigix_text.dart';
+import '../../widgets/rigix/rounded_button.dart';
+class ForgetPasswordScreen extends StatelessWidget {
+   ForgetPasswordScreen({super.key});
   final _formKey=GlobalKey<FormState>();
-   void _onSaved(BuildContext context){
-     if(_formKey.currentState!.validate()){
-       _formKey.currentState!.save();
-       Navigator.of(context).pushReplacement(
-           MaterialPageRoute(builder: (ctx){
-             return const HomeScreen();
-           }));
-     }
-   }
+  void _onSaved(BuildContext context){
+    if(_formKey.currentState!.validate()){
+      _formKey.currentState!.save();
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (cts)=>LoginScreen())
+      );
+    }
+  }
    void _onLoginSelect(BuildContext context){
      Navigator.of(context).pushReplacement(
          MaterialPageRoute(builder: (ctx){
            return  LoginScreen();
          }));
    }
-
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -36,23 +33,18 @@ class RegisterScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
 
               children: [
-                RigixText("Register"),
+                RigixText("Forget Password"),
                 const SizedBox(height: 35,),
                 FormsTextField(
+                  
                     topic: FormsTopic.phoneNumber,
-                    label: "enter your phone number here"),
-               const  SizedBox(height: 16,),
-                FormsTextField(
-                    topic: FormsTopic.email,
-                    label: "enter your email here"),
-               const  SizedBox(height: 16,),
+                    label: "enter your phone number here", ctrl: TextEditingController(),),
+                const SizedBox(height: 16,),
                 FormsTextField(topic: FormsTopic.password,
+                    ctrl: TextEditingController(),
                     label: "enter your password here"),
                 const SizedBox(height: 16,),
-                FormsTextField(topic: FormsTopic.confirmPassword,
-                    label: "enter your password here"),
-                const SizedBox(height: 16,),
-                RoundedButton(title: "Regist",
+                RoundedButton(title: "Confirm",
                     onPressed: (){_onSaved(context);}),
                 Row(mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -61,6 +53,7 @@ class RegisterScreen extends StatelessWidget {
                         title: "Login now",
                         onPressed: (){_onLoginSelect(context);})
                   ],)
+
               ],
             ),
           ),
