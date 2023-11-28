@@ -67,6 +67,7 @@ class _FormsTextFieldState extends State<FormsTextField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: TextFormField(
+
         controller:widget.ctrl,
 
         autofocus: true,
@@ -88,13 +89,16 @@ class _FormsTextFieldState extends State<FormsTextField> {
 
         validator: validate,
         decoration:  InputDecoration(
+
           errorText: errorText,
+
             border: const OutlineInputBorder(
+
             ),
             labelText: widget.label,
             prefixIcon: Icon(
               kFormIcon[widget.topic],
-              color: Colors.deepPurple,
+              color:  Color.fromARGB(255, 52, 215, 172),
 
             ),
             labelStyle:const  TextStyle(fontSize: 15)),

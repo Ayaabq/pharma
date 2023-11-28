@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pharma/screens/rigex_sreens/login.dart';
-import 'package:pharma/screens/rigex_sreens/register.dart';
+
 import 'package:pharma/screens/rigex_sreens/splash.dart';
-import 'package:pharma/widgets/rigix/T_button.dart';
-import 'package:pharma/widgets/rigix/forms_text_field.dart';
-import 'package:pharma/widgets/rigix/rounded_button.dart';
+
+
+var kColorScheme =ColorScheme.fromSeed(seedColor: const Color.fromARGB(
+    255, 67, 201, 201));
 
 void main() {
   runApp(MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _eformKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -24,24 +24,7 @@ class _MyAppState extends State<MyApp> {
 
       home: Scaffold(
         body:SplashScreen()
-    //     Column(mainAxisAlignment: MainAxisAlignment.center,
-    //       children: [
-    //         Form(
-    //           key: _eformKey,
-    //           child: Column
-    //        ( children:
-    //           [FormsTextField(topic: FormsTopic.email, label: "inter ur emil",),
-    //         SizedBox(height: 29,),
-    //
-    //       ]
-    //   ),),
-    //
-    //      RoundedButton(title: "save",  onPressed: (){
-    //        _eformKey.currentState!.validate();
-    //      }),
-    //         TButton(title: "regester", onPressed: (){})
-    // ],
-    //     ),
+
       ),
     );
   }

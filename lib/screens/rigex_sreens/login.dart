@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:pharma/screens/categories.dart';
 import 'package:pharma/screens/rigex_sreens/forget_password.dart';
@@ -6,7 +8,7 @@ import 'package:pharma/widgets/rigix/forms_text_field.dart';
 import 'package:pharma/widgets/rigix/rigix_text.dart';
 import 'package:pharma/widgets/rigix/rounded_button.dart';
 import 'package:pharma/widgets/rigix/T_button.dart';
-
+import 'package:http/http.dart' as http;
 import '../../data/rigex.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -15,7 +17,24 @@ class LoginScreen extends StatelessWidget {
   var phoneCtrl = TextEditingController();
   var passwordCtrl = TextEditingController();
 
-  void _onSaved(BuildContext context) {
+  void _onSaved(BuildContext context)  async{
+    final url=Uri.https("10.0.2.2:8000", " /api/register");
+    final response = await http.post(url,
+
+      body: json.encode(
+          {
+            'name': 'aya',
+            'phone': '09876543215',
+            'email': "aya@gmail.com",
+            'password': '12345678',
+            'password_confirmation': '12345678',
+
+          }
+      ),
+    );
+
+    print(response.statusCode);
+
     if (_formKey.currentState!.validate()) {
       if(users.where((user) {
         if(user.phoneNumber == phoneCtrl.value && user.password == passwordCtrl.value)
@@ -28,8 +47,9 @@ class LoginScreen extends StatelessWidget {
         return const CategoriesScreen();
         //return HomeScreen();
       }));
-    }
-  }
+    }}
+
+
 
   void _onRegisterSelect(BuildContext context) {
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
@@ -53,7 +73,18 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                RigixText("Login"),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RigixText("Login"),
+                    Image.asset("assets/images/pharma_logo.png",
+                      height: 70,
+                      width: 70,
+                      fit: BoxFit.cover,
+                    ),
+                  ],
+                ),
                 const SizedBox(
                   height: 35,
                 ),
