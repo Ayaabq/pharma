@@ -18,22 +18,27 @@ class LoginScreen extends StatelessWidget {
   var passwordCtrl = TextEditingController();
 
   void _onSaved(BuildContext context)  async{
-    final url=Uri.https("10.0.2.2:8000", " /api/register");
-    final response = await http.post(url,
 
-      body: json.encode(
-          {
-            'name': 'aya',
-            'phone': '09876543215',
-            'email': "aya@gmail.com",
-            'password': '12345678',
-            'password_confirmation': '12345678',
-
-          }
-      ),
-    );
-
-    print(response.statusCode);
+    // final url= Uri.parse("http://10.0.2.2:8000/api/register");
+    // final response = await http.post(url,
+    //   headers: <String, String>{
+    //     'Accept': 'application/json',
+    //     'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: json.encode(
+    //       {
+    //         'name': 'ayabak',
+    //         'phone': '0966381877',
+    //         'email': "ayabak@gmail.com",
+    //         'password': '1234567gjk',
+    //         'password_confirmation': '1234567gjk',
+    //
+    //       }
+    //   ),
+    // );
+    //
+    // print(response.statusCode);
 
     if (_formKey.currentState!.validate()) {
       if(users.where((user) {
