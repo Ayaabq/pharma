@@ -71,6 +71,8 @@ flutter:
   assets:
    - assets/images/
    - assets/images/digital_health.jpg
+   - assets/images/second_med.jpg
+   - assets/images/third_screen.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

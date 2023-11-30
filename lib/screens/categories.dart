@@ -36,8 +36,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   int activeIndex = 0;
   final controller = CarouselController();
   final urlImages = [
+    'assets/images/second_med.jpg',
+
+    'assets/images/third_screen.jpg',
     'assets/images/digital_health.jpg',
-    'assets/images/digital_health.jpg',
+
     // 'https://images.unsplash.com/photo-1612825173281-9a193378527e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=499&q=80',
     // 'https://images.unsplash.com/photo-1580654712603-eb43273aff33?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
     // 'https://images.unsplash.com/photo-1627916607164-7b20241db935?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80',
