@@ -28,17 +28,17 @@ class LoginScreen extends StatelessWidget {
     //   },
     //   body: json.encode(
     //       {
-    //         'name': 'ayabak',
-    //         'phone': '0966381877',
-    //         'email': "ayabak@gmail.com",
-    //         'password': '1234567gjk',
-    //         'password_confirmation': '1234567gjk',
+    //         'name': 'ayaba',
+    //         'phone': '0966381871',
+    //         'email': "ayabakl@gmail.com",
+    //         'password': '1234567gjkh',
+    //         'password_confirmation': '1234567gjkh',
     //
     //       }
     //   ),
-    // );
-    //
-    // print(response.statusCode);
+   //  );
+   //
+   // print(response.statusCode);
 
     if (_formKey.currentState!.validate()) {
       if(users.where((user) {

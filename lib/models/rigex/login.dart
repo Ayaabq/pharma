@@ -1,4 +1,4 @@
-import 'package:pharma/models/rigex/login_model.dart';
+import 'package:pharma/models/rigex/login.dart';
 import 'package:pharma/models/rigex/user.dart';
 
 class LoginModel {

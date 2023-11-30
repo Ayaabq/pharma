@@ -4,9 +4,10 @@ import 'package:regexpattern/regexpattern.dart';
 
 
  enum FormsTopic{
-  email, password, phoneNumber,confirmPassword
+  email, password, phoneNumber,confirmPassword, userName
 }
 Map<FormsTopic,IconData> kFormIcon={
+   FormsTopic.userName: Icons.account_circle_sharp,
   FormsTopic.email: Icons.email_outlined,
   FormsTopic.password: Icons.remove_red_eye_rounded,
   FormsTopic.confirmPassword: Icons.remove_red_eye_rounded,
@@ -81,7 +82,6 @@ class _FormsTextFieldState extends State<FormsTextField> {
         },
         onChanged: (value) {
           // email=value
-          print(value);
           if(widget.topic==FormsTopic.password)
             password=value;
 
