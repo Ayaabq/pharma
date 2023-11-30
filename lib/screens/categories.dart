@@ -163,15 +163,17 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     );
   }
 
-  Widget buildIndicator() => AnimatedSmoothIndicator(
-        onDotClicked: animateToSlide,
-        effect: ExpandingDotsEffect(
-          dotWidth: 15,
-          activeDotColor: Colors.blue,
-          expansionFactor: 2,
+  Widget buildIndicator() => Center(
+        child: AnimatedSmoothIndicator(
+          onDotClicked: animateToSlide,
+          effect: ExpandingDotsEffect(
+            dotWidth: 15,
+            activeDotColor: Colors.blue,
+            expansionFactor: 2,
+          ),
+          activeIndex: activeIndex,
+          count: urlImages.length,
         ),
-        activeIndex: activeIndex,
-        count: urlImages.length,
       );
 
   void animateToSlide(int index) => controller.animateToPage(index);
