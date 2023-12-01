@@ -90,9 +90,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 return buildImage(urlImage, index);
               },
               options: CarouselOptions(
-                  autoPlay: false,
+                  autoPlay: true,
                   enableInfiniteScroll: false,
-                  autoPlayAnimationDuration: Duration(seconds: 2),
+                  autoPlayAnimationDuration: Duration(seconds: 3),
                   enlargeCenterPage: true,
                   onPageChanged: (index, reason) =>
                       setState(() => activeIndex = index))),

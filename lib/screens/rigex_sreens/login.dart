@@ -24,21 +24,22 @@ class LoginScreen extends StatelessWidget {
     //   headers: <String, String>{
     //     'Accept': 'application/json',
     //     'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
-    //     'Content-Type': 'application/json',
+    //     'Content-Type': 'application/json; charset=UTF-8',
     //   },
     //   body: json.encode(
     //       {
-    //         'name': 'ayaba',
-    //         'phone': '0966381871',
-    //         'email': "ayabakl@gmail.com",
-    //         'password': '1234567gjkh',
-    //         'password_confirmation': '1234567gjkh',
+    //         'name': 'ayabaga',
+    //         'phone': '0936781971',
+    //         'email': "bgabakl@gmail.com",
+    //         'password': '12uk34567gjksh',
+    //         'password_confirmation': '12uk34567gjksh',
     //
     //       }
     //   ),
-   //  );
-   //
+    // );
+
    // print(response.statusCode);
+   // print(json.decode(response.body));
 
     if (_formKey.currentState!.validate()) {
       if(users.where((user) {

@@ -1,29 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:pharma/models/rigex/register.dart';
 import 'package:pharma/screens/categories.dart';
 import 'package:pharma/screens/rigex_sreens/login.dart';
 import 'package:pharma/services/auth_service.dart';
-
 import '../../widgets/rigix/T_button.dart';
 import '../../widgets/rigix/forms_text_field.dart';
 import '../../widgets/rigix/rigix_text.dart';
 import '../../widgets/rigix/rounded_button.dart';
 class RegisterScreen extends StatelessWidget {
    RegisterScreen({super.key});
+   // controllers for the filed
    final TextEditingController _phoneController=TextEditingController();
    final TextEditingController _userNameController=TextEditingController();
   final TextEditingController _emailController=TextEditingController();
    final TextEditingController _passwordController=TextEditingController();
    final TextEditingController _confPasswordController=TextEditingController();
-  final _formKey=GlobalKey<FormState>();
+
+
+
+  // the form key
+   final _formKey=GlobalKey<FormState>();
+
+
+   // this function will execute when the register button pressed
    void _onSaved(BuildContext context) async{
+   //check the validation
      if(_formKey.currentState!.validate()){
        _formKey.currentState!.save();
-       // await AuthServices().createUser(
-       //     phone: _phoneController.value.toString(),
-       //     email: _emailController.value.toString(),
-       //     password: _phoneController.value.toString(),
-       //     userName: _userNameController.value.toString(),
-       // confPassword: _confPasswordController.value.toString());
+       // making the api model to use it for connecting with baackend
+       RegisterModel registerModel=RegisterModel(phone: _phoneController.text.toString(),
+           email: _emailController.text.toString(),
+           password: _passwordController.text.toString(),
+           name: _userNameController.text.toString(),
+           passwordConfirmation: _confPasswordController.text.toString());
+
+       // calling the api function
+       await AuthServices().createUser(registerModel);
 
 
        Navigator.of(context).pushReplacement(
@@ -32,12 +44,18 @@ class RegisterScreen extends StatelessWidget {
            }));
      }
    }
+
+
+
    void _onLoginSelect(BuildContext context){
      Navigator.of(context).pushReplacement(
          MaterialPageRoute(builder: (ctx){
            return  LoginScreen();
          }));
    }
+
+
+
 
   @override
   Widget build(BuildContext context) {
