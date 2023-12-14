@@ -40,7 +40,7 @@ class MedicinesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Color.fromARGB(255, 67, 201, 201),
       ),
       body: content,
     );
