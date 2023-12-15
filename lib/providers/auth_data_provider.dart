@@ -8,5 +8,9 @@ import '../models/rigex/register.dart';
 
 
   final registerDataProvider = FutureProvider<RegisterModel>((ref,) async {
-    return await ref.watch(registerProvider).createUser(registerModel);
+    return await ref.watch(authProvider).createUser(registerModel);
   });
+
+// final loginDataProvider = FutureProvider<LoginModel>((ref,) async {
+//   return await ref.watch(authProvider).getUser(registerModel);
+// });

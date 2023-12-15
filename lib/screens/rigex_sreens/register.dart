@@ -6,7 +6,7 @@ import 'package:pharma/screens/rigex_sreens/login.dart';
 import 'package:pharma/services/auth_service.dart';
 import '../../controllers/register_controllers.dart';
 import '../../models/user.dart';
-import '../../providers/register_data_provider.dart';
+import '../../providers/auth_data_provider.dart';
 import '../../providers/user_provider.dart';
 import '../../widgets/rigix/T_button.dart';
 import '../../widgets/rigix/forms_text_field.dart';

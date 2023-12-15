@@ -5,8 +5,8 @@ class LoginModel {
   String? phone;
   String? password;
   String? token;
-  User user;
-  LoginModel({this.phone, this.password, this.token, required this.user});
+  User? user;
+  LoginModel({this.phone, this.password, this.token,  this.user});
   
   factory LoginModel.fromJson(Map<String , dynamic> json){
     return LoginModel(
