@@ -4,11 +4,6 @@ import 'package:pharma/models/category.dart';
 
 const availableCategories = [
   Category(
-    id: 'c1',
-    title: 'Vitamins',
-    // color: Colors.purple,
-  ),
-  Category(
     id: 'c2',
     title: 'Sleeping Drugs',
     // color: Colors.red,
