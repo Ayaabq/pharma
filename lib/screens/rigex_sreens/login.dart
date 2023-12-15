@@ -43,7 +43,7 @@ class LoginScreen extends StatelessWidget {
 
     if (_formKey.currentState!.validate()) {
       if(users.where((user) {
-        if(user.phoneNumber == phoneCtrl.value && user.password == passwordCtrl.value)
+        if(user.phone == phoneCtrl.value && user.password == passwordCtrl.value)
           return true;
         return false;}
       ).toList().length<1)

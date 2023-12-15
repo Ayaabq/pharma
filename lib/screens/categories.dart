@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma/data/dummy_data_category.dart';
 import 'package:pharma/data/dummy_data_medicine.dart';
 import 'package:pharma/models/category.dart';
+import 'package:pharma/providers/register_data_provider.dart';
+import 'package:pharma/providers/user_provider.dart';
 import 'package:pharma/screens/medicines.dart';
 import 'package:pharma/widgets/category_grid_item.dart';
 
@@ -9,14 +12,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 
-class CategoriesScreen extends StatefulWidget {
+class CategoriesScreen extends ConsumerStatefulWidget {
   const CategoriesScreen({super.key});
 
   @override
-  State<CategoriesScreen> createState() => _CategoriesScreenState();
+  ConsumerState<CategoriesScreen> createState() => _CategoriesScreenState();
 }
 
-class _CategoriesScreenState extends State<CategoriesScreen> {
+class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
   void _selectCategory(BuildContext context, Category category) {
     final filteredMedicine = dummyMedicine
         .where(
@@ -51,11 +54,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final userWatcher =ref.watch(userProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Online Pharmacy',
-        ),
+        title: Text(userWatcher?.name.toString() ?? "aya"),
         backgroundColor: Color.fromARGB(255, 67, 201, 201),
       ),
       body: Column(
