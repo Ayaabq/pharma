@@ -1,60 +1,46 @@
-/// name : "ayaba"
-/// phone : "0966381848"
-/// email : "ayabac@gmail.com"
-/// password : "1234567gj"
-/// password_confirmation : "1234567gj"
+import '../user.dart';
+
+/// user : {"name":"malek","phone":"92882327","password":"fsjahfl","email":"mama@gmail.com","updated_at":"2023-12-07T20:54:54.000000Z","created_at":"2023-12-07T20:54:54.000000Z","id":12}
+/// token : "16|vaarYWFC8QLE9Q4aqnWoFOlQn0PWqOgOAZqgqrgv1f65ec5b"
 
 class RegisterModel {
   RegisterModel({
-      String? name, 
-      String? phone, 
-      String? email, 
-      String? password, 
-      String? passwordConfirmation,}){
-    _name = name;
-    _phone = phone;
-    _email = email;
-    _password = password;
-    _passwordConfirmation = passwordConfirmation;
+      User? user,
+      String? token,}){
+    _user = user;
+    _token = token;
 }
 
   RegisterModel.fromJson(dynamic json) {
-    _name = json['name'];
-    _phone = json['phone'];
-    _email = json['email'];
-    _password = json['password'];
-    _passwordConfirmation = json['password_confirmation'];
+    _user = json['user'] != null ? User.fromJson(json['user']) : null;
+    _token = json['token'];
   }
-  String? _name;
-  String? _phone;
-  String? _email;
-  String? _password;
-  String? _passwordConfirmation;
-RegisterModel copyWith({  String? name,
-  String? phone,
-  String? email,
-  String? password,
-  String? passwordConfirmation,
-}) => RegisterModel(  name: name ?? _name,
-  phone: phone ?? _phone,
-  email: email ?? _email,
-  password: password ?? _password,
-  passwordConfirmation: passwordConfirmation ?? _passwordConfirmation,
+  User? _user;
+  String? _token;
+  RegisterModel copyWith({  User? user,
+  String? token,
+}) => RegisterModel(  user: user ?? _user,
+  token: token ?? _token,
 );
-  String? get name => _name;
-  String? get phone => _phone;
-  String? get email => _email;
-  String? get password => _password;
-  String? get passwordConfirmation => _passwordConfirmation;
+  User? get user => _user;
+  String? get token => _token;
 
-  Map<String, String> toJson() {
-    final map = <String, String >{};
-    map['name'] = _name ?? "";
-    map['phone'] = _phone ?? "";
-    map['email'] = _email ?? "";
-    map['password'] = _password ?? "";
-    map['password_confirmation'] = _passwordConfirmation ?? "";
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    if (_user != null) {
+      map['user'] = _user?.toJson();
+    }
+    map['token'] = _token;
     return map;
   }
 
 }
+
+/// name : "malek"
+/// phone : "92882327"
+/// password : "fsjahfl"
+/// email : "mama@gmail.com"
+/// updated_at : "2023-12-07T20:54:54.000000Z"
+/// created_at : "2023-12-07T20:54:54.000000Z"
+/// id : 12
+

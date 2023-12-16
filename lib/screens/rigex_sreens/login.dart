@@ -1,9 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pharma/models/rigex/login.dart';
+import 'package:pharma/providers/user_provider.dart';
 import 'package:pharma/screens/categories.dart';
 import 'package:pharma/screens/rigex_sreens/forget_password.dart';
 import 'package:pharma/screens/rigex_sreens/register.dart';
+import 'package:pharma/services/auth_service.dart';
 import 'package:pharma/widgets/rigix/forms_text_field.dart';
 import 'package:pharma/widgets/rigix/rigix_text.dart';
 import 'package:pharma/widgets/rigix/rounded_button.dart';
@@ -11,44 +15,27 @@ import 'package:pharma/widgets/rigix/T_button.dart';
 import 'package:http/http.dart' as http;
 import '../../data/rigex.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget {
   LoginScreen({super.key});
   final _formKey = GlobalKey<FormState>();
   var phoneCtrl = TextEditingController();
   var passwordCtrl = TextEditingController();
 
-  void _onSaved(BuildContext context)  async{
-
-    // final url= Uri.parse("http://10.0.2.2:8000/api/register");
-    // final response = await http.post(url,
-    //   headers: <String, String>{
-    //     'Accept': 'application/json',
-    //     'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
-    //     'Content-Type': 'application/json; charset=UTF-8',
-    //   },
-    //   body: json.encode(
-    //       {
-    //         'name': 'ayabaga',
-    //         'phone': '0936781971',
-    //         'email': "bgabakl@gmail.com",
-    //         'password': '12uk34567gjksh',
-    //         'password_confirmation': '12uk34567gjksh',
-    //
-    //       }
-    //   ),
-    // );
-
-   // print(response.statusCode);
-   // print(json.decode(response.body));
+  void _onSaved(BuildContext context ,WidgetRef ref)  async{
 
     if (_formKey.currentState!.validate()) {
       if(users.where((user) {
-        if(user.phoneNumber == phoneCtrl.value && user.password == passwordCtrl.value)
+        if(user.phone == phoneCtrl.value && user.password == passwordCtrl.value)
           return true;
         return false;}
       ).toList().length<1)
-        print("no");
+
       _formKey.currentState!.save();
+      final login = LoginModel(phone: phoneCtrl.text.toString(), password: passwordCtrl.text.toString());
+      final _userWatcher= await ref.watch(authProvider).getUser(login);
+      ref.watch(userProvider.notifier).setUser(_userWatcher.user!);
+
+
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
         return const CategoriesScreen();
         //return HomeScreen();
@@ -70,7 +57,7 @@ class LoginScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -111,7 +98,7 @@ class LoginScreen extends StatelessWidget {
                 RoundedButton(
                     title: "Login",
                     onPressed: () {
-                      _onSaved(context);
+                      _onSaved(context, ref);
                     }),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
