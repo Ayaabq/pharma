@@ -6,10 +6,9 @@ class AllCategoryService {
   Future<List<CategoryModel>> getAllCategory(String token) async {
     print('hello1');
 
-    http.Response response = await http
-        .get(Uri.parse("http://10.0.2.2:8000/api/admin/getCategories"),
-      headers: {'Authorization': 'Bearer $token'}
-    );
+    http.Response response = await http.get(
+        Uri.parse("http://10.0.2.2:8000/api/admin/getCategories"),
+        headers: {'Authorization': 'Bearer $token'});
     print(response.statusCode);
     print(response.body);
     print('hello2');

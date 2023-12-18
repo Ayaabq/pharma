@@ -57,13 +57,12 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final userWatcher = ref.watch(userProvider);
     final tokenReader = ref.read(tokenProvider);
     return Scaffold(
-      drawer: MainDrawer(onSelectedScreen: (String a){}),
+      drawer: MainDrawer(onSelectedScreen: (String a) {}),
       appBar: AppBar(
-        title: Text(userWatcher?.name.toString() ?? "aya"),
-        backgroundColor: Color.fromARGB(255, 67, 201, 201),
+        title: const Text("Categories"),
+        backgroundColor: const Color.fromARGB(255, 67, 201, 201),
       ),
       body: FutureBuilder<List<CategoryModel>>(
         future: AllCategoryService().getAllCategory(tokenReader.toString()),
@@ -76,13 +75,13 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
               children: [
                 Container(
                   width: double.infinity,
-                  margin: EdgeInsets.fromLTRB(10, 11, 10, 0),
-                  padding: EdgeInsets.all(15),
+                  margin: const EdgeInsets.fromLTRB(10, 11, 10, 0),
+                  padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24),
                     color: Colors.grey[300],
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
                       Icon(
                         Icons.search,

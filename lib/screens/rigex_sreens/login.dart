@@ -22,8 +22,7 @@ class LoginScreen extends ConsumerWidget {
   var phoneCtrl = TextEditingController();
   var passwordCtrl = TextEditingController();
 
-  void _onSaved(BuildContext context ,WidgetRef ref)  async{
-
+  void _onSaved(BuildContext context, WidgetRef ref) async {
     if (_formKey.currentState!.validate()) {
       // if(users.where((user) {
       //   if(user.phone == phoneCtrl.value && user.password == passwordCtrl.value)
@@ -32,17 +31,18 @@ class LoginScreen extends ConsumerWidget {
       // ).toList().length<1)
 
       _formKey.currentState!.save();
-      final login = LoginModel(phone: phoneCtrl.text.toString(), password: passwordCtrl.text.toString());
-      final _authWatcher= await ref.watch(authProvider).getUser(login);
+      final login = LoginModel(
+          phone: phoneCtrl.text.toString(),
+          password: passwordCtrl.text.toString());
+      final _authWatcher = await ref.watch(authProvider).getUser(login);
       ref.watch(userProvider.notifier).setUser(_authWatcher.user!);
       ref.watch(tokenProvider.notifier).setToken(_authWatcher.token!);
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
         return const CategoriesScreen();
         //return HomeScreen();
       }));
-    }}
-
-
+    }
+  }
 
   void _onRegisterSelect(BuildContext context) {
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
@@ -59,70 +59,72 @@ class LoginScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    RigixText("Login"),
-                    Image.asset("assets/images/pharma_logo.png",
-                      height: 70,
-                      width: 70,
-                      fit: BoxFit.cover,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 35,
-                ),
-                FormsTextField(
-                  ctrl: phoneCtrl,
-                    topic: FormsTopic.phoneNumber,
-                    label: "enter your phone number here"),
-                const SizedBox(
-                  height: 16,
-                ),
-                FormsTextField(
-                  ctrl: passwordCtrl,
-                    topic: FormsTopic.password,
-                    label: "enter your password here"),
-                const SizedBox(
-                  height: 16,
-                ),
-                RoundedButton(
-                    title: "Login",
-                    onPressed: () {
-                      _onSaved(context, ref);
-                    }),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Don't have an account?"),
-                    TButton(
-                        title: "Register now",
-                        onPressed: () {
-                          _onRegisterSelect(context);
-                        })
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Forget your password?"),
-                    TButton(
-                        title: "Create New Password",
-                        onPressed: () {
-                          _onForgetPSelect(context);
-                        })
-                  ],
-                )
-              ],
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      RigixText("Login"),
+                      Image.asset(
+                        "assets/images/pharma_logo.png",
+                        height: 70,
+                        width: 70,
+                        fit: BoxFit.cover,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 35,
+                  ),
+                  FormsTextField(
+                      ctrl: phoneCtrl,
+                      topic: FormsTopic.phoneNumber,
+                      label: "enter your phone number here"),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  FormsTextField(
+                      ctrl: passwordCtrl,
+                      topic: FormsTopic.password,
+                      label: "enter your password here"),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  RoundedButton(
+                      title: "Login",
+                      onPressed: () {
+                        _onSaved(context, ref);
+                      }),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Don't have an account?"),
+                      TButton(
+                          title: "Register now",
+                          onPressed: () {
+                            _onRegisterSelect(context);
+                          })
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Forget your password?"),
+                      TButton(
+                          title: "Create New Password",
+                          onPressed: () {
+                            _onForgetPSelect(context);
+                          })
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

@@ -4,12 +4,11 @@ import 'package:pharma/models/user.dart';
 import 'package:pharma/screens/rigex_sreens/register.dart';
 import '../models/rigex/register.dart';
 
-
-
-
-  final registerDataProvider = FutureProvider<RegisterModel>((ref,) async {
-    return await ref.watch(authProvider).createUser(registerModel);
-  });
+final registerDataProvider = FutureProvider<RegisterModel>((
+  ref,
+) async {
+  return await ref.watch(authProvider).createUser(registerModel);
+});
 
 // final loginDataProvider = FutureProvider<LoginModel>((ref,) async {
 //   return await ref.watch(authProvider).getUser(registerModel);
@@ -17,14 +16,12 @@ import '../models/rigex/register.dart';
 
 // final confpassProvider = StateNotifierProvider((ref) => null)
 
-class TokenNotifierState extends StateNotifier<String?>{
-  TokenNotifierState(): super(null);
+class TokenNotifierState extends StateNotifier<String?> {
+  TokenNotifierState() : super(null);
 
-  setToken(String token)
-  {
-    state=token;
+  setToken(String token) {
+    state = token;
   }
-
 }
 
-final tokenProvider = StateNotifierProvider((ref) => TokenNotifierState()) ;
+final tokenProvider = StateNotifierProvider((ref) => TokenNotifierState());

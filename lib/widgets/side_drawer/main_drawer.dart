@@ -1,45 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pharma/providers/auth_data_provider.dart';
+import 'package:pharma/screens/rigex_sreens/login.dart';
+import 'package:pharma/services/auth_service.dart';
 import 'package:pharma/widgets/side_drawer/drawer_option.dart';
-class MainDrawer extends StatelessWidget {
+import 'package:pharma/widgets/side_drawer/header.dart';
+
+class MainDrawer extends ConsumerWidget {
   const MainDrawer({super.key, required this.onSelectedScreen});
-  final void Function (String identifier) onSelectedScreen;
+  final void Function(String identifier) onSelectedScreen;
+  void _onLogOut(WidgetRef ref, BuildContext context) async{
+    final tokenWatcher= ref.watch(tokenProvider);
+    ref.watch(authProvider).deleteToken(tokenWatcher.toString());
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx)=>LoginScreen()));
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Drawer(
       child: Column(
         children: [
-          DrawerHeader(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    Theme.of(context).colorScheme.primaryContainer,
-                    Theme.of(context).colorScheme.primaryContainer.withOpacity(0.8),
-                  ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight)
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.local_pharmacy, size: 48, color: Theme.of(context).colorScheme.primary,),
-                  const SizedBox(width: 18,),
-                  Text('Cooking Up!',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color:Theme.of(context).colorScheme.primary
-                    ),)
-                ],
-              )
-          ),
-
-          DrawerOption(onChose: (){}, icon: Icons.shopping_bag_rounded, title: "My Orders"),
-          ListTile(
-            leading: Icon(Icons.settings,size: 26,
-              color: Theme.of(context).colorScheme.onBackground,),
-            title: Text('My Favorite', style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                color: Theme.of(context).colorScheme.onBackground,
-                fontSize: 24
-            ),),
-            onTap: (){onSelectedScreen('filters');},
-          ),
+          const Header(),
+          DrawerOption(
+              onChose: () {},
+              icon: Icons.shopping_bag_rounded,
+              title: "My Orders"),
+          DrawerOption(
+              onChose: () {},
+              icon: Icons.favorite_rounded,
+              title: "My Favorite"),
+          DrawerOption(
+              onChose: (){_onLogOut(ref, context);}, icon: Icons.logout, title: "Log Out"),
         ],
       ),
     );

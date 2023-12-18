@@ -5,11 +5,12 @@ import '../user.dart';
 
 class RegisterModel {
   RegisterModel({
-      User? user,
-      String? token,}){
+    User? user,
+    String? token,
+  }) {
     _user = user;
     _token = token;
-}
+  }
 
   RegisterModel.fromJson(dynamic json) {
     _user = json['user'] != null ? User.fromJson(json['user']) : null;
@@ -17,11 +18,14 @@ class RegisterModel {
   }
   User? _user;
   String? _token;
-  RegisterModel copyWith({  User? user,
-  String? token,
-}) => RegisterModel(  user: user ?? _user,
-  token: token ?? _token,
-);
+  RegisterModel copyWith({
+    User? user,
+    String? token,
+  }) =>
+      RegisterModel(
+        user: user ?? _user,
+        token: token ?? _token,
+      );
   User? get user => _user;
   String? get token => _token;
 
@@ -33,7 +37,6 @@ class RegisterModel {
     map['token'] = _token;
     return map;
   }
-
 }
 
 /// name : "malek"
@@ -43,4 +46,3 @@ class RegisterModel {
 /// updated_at : "2023-12-07T20:54:54.000000Z"
 /// created_at : "2023-12-07T20:54:54.000000Z"
 /// id : 12
-

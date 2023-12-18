@@ -9,16 +9,11 @@ class UserNotifier extends StateNotifier<User?> {
   // pass the initial data:
   UserNotifier() : super(null);
 
-  setUser (User user)
-  {
-    state=user;
+  setUser(User user) {
+    state = user;
   }
 }
 
-final userProvider =
-StateNotifierProvider<UserNotifier, User?>((ref) {
+final userProvider = StateNotifierProvider<UserNotifier, User?>((ref) {
   return UserNotifier();
 });
-
-
-

@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:pharma/controllers/register_controllers.dart';
+import 'package:pharma/screens/rigex_sreens/register.dart';
 import 'package:regexpattern/regexpattern.dart';
 
 
@@ -54,9 +56,9 @@ class _FormsTextFieldState extends State<FormsTextField> {
        return "password is not safe, enter harder one ";
      }     if(widget.topic==FormsTopic.phoneNumber && !value.isPhone()) {
        return "enter a valid phone number ";}
-     //     if(widget.topic==FormsTopic.confirmPassword && value!=password) {
-     //   return "passwords are not the same";
-     // }
+         if(widget.topic==FormsTopic.confirmPassword && value!=RegisterController.passwordController.text) {
+       return "passwords are not the same";
+     }
 
      return  null;
 

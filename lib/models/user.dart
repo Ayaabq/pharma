@@ -6,7 +6,8 @@ class User {
     String? email,
     String? updatedAt,
     String? createdAt,
-    num? id,}){
+    num? id,
+  }) {
     _name = name;
     _phone = phone;
     _password = password;
@@ -26,20 +27,22 @@ class User {
   String? _password;
   String? _email;
   num? _id;
-  User copyWith({  String? name,
+  User copyWith({
+    String? name,
     String? phone,
     String? password,
     String? email,
     String? updatedAt,
     String? createdAt,
     num? id,
-  }) => User(  name: name ?? _name,
-    phone: phone ?? _phone,
-    password: password ?? _password,
-    email: email ?? _email,
-
-    id: id ?? _id,
-  );
+  }) =>
+      User(
+        name: name ?? _name,
+        phone: phone ?? _phone,
+        password: password ?? _password,
+        email: email ?? _email,
+        id: id ?? _id,
+      );
   String? get name => _name;
   String? get phone => _phone;
   String? get password => _password;
@@ -56,5 +59,4 @@ class User {
     map['id'] = _id;
     return map;
   }
-
 }
