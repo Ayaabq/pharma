@@ -39,17 +39,18 @@ class RegisterScreen extends ConsumerWidget {
 
 
        // calling the api function
-         final _userWatcher=  await ref.read(registerDataProvider);
+        // final _registerFutuerWatcher=  await ref.watch(registerDataProvider);
+       final _authWatcher= await ref.watch(authProvider).createUser(registerModel);
 
-     //   _userWatcher.when(data: (data){
+       //   _registerFutuerWatcher.when(data: (data){
      //
      //  },
      //       error: (err, s)=> Text(err.toString()),
      //       loading: ()=>showDialog(context: context, builder: (ctx)=> CircularProgressIndicator()),
      //
      // );
-       ref.watch(userProvider.notifier).setUser(_userWatcher.value!.user!);
-
+       ref.watch(userProvider.notifier).setUser(_authWatcher.user!);
+       ref.watch(tokenProvider.notifier).setToken(_authWatcher.token!);
 
        //  await AuthServices().createUser(registerModel);
        Navigator.of(context).pushReplacement(

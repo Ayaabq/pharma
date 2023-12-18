@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma/models/rigex/login.dart';
+import 'package:pharma/providers/auth_data_provider.dart';
 import 'package:pharma/providers/user_provider.dart';
 import 'package:pharma/screens/categories.dart';
 import 'package:pharma/screens/rigex_sreens/forget_password.dart';
@@ -24,18 +25,17 @@ class LoginScreen extends ConsumerWidget {
   void _onSaved(BuildContext context ,WidgetRef ref)  async{
 
     if (_formKey.currentState!.validate()) {
-      if(users.where((user) {
-        if(user.phone == phoneCtrl.value && user.password == passwordCtrl.value)
-          return true;
-        return false;}
-      ).toList().length<1)
+      // if(users.where((user) {
+      //   if(user.phone == phoneCtrl.value && user.password == passwordCtrl.value)
+      //     return true;
+      //   return false;}
+      // ).toList().length<1)
 
       _formKey.currentState!.save();
       final login = LoginModel(phone: phoneCtrl.text.toString(), password: passwordCtrl.text.toString());
-      final _userWatcher= await ref.watch(authProvider).getUser(login);
-      ref.watch(userProvider.notifier).setUser(_userWatcher.user!);
-
-
+      final _authWatcher= await ref.watch(authProvider).getUser(login);
+      ref.watch(userProvider.notifier).setUser(_authWatcher.user!);
+      ref.watch(tokenProvider.notifier).setToken(_authWatcher.token!);
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
         return const CategoriesScreen();
         //return HomeScreen();

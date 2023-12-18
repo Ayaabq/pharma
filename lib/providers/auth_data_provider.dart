@@ -14,3 +14,17 @@ import '../models/rigex/register.dart';
 // final loginDataProvider = FutureProvider<LoginModel>((ref,) async {
 //   return await ref.watch(authProvider).getUser(registerModel);
 // });
+
+// final confpassProvider = StateNotifierProvider((ref) => null)
+
+class TokenNotifierState extends StateNotifier<String?>{
+  TokenNotifierState(): super(null);
+
+  setToken(String token)
+  {
+    state=token;
+  }
+
+}
+
+final tokenProvider = StateNotifierProvider((ref) => TokenNotifierState()) ;

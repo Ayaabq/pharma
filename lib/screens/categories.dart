@@ -11,6 +11,7 @@ import 'package:pharma/screens/medicines.dart';
 import 'package:pharma/services/get_categories_service.dart';
 import 'package:pharma/widgets/category_grid_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:pharma/widgets/side_drawer/main_drawer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 
@@ -57,13 +58,15 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     final userWatcher = ref.watch(userProvider);
+    final tokenReader = ref.read(tokenProvider);
     return Scaffold(
+      drawer: MainDrawer(onSelectedScreen: (String a){}),
       appBar: AppBar(
         title: Text(userWatcher?.name.toString() ?? "aya"),
         backgroundColor: Color.fromARGB(255, 67, 201, 201),
       ),
       body: FutureBuilder<List<CategoryModel>>(
-        future: AllCategoryService().getAllCategory(),
+        future: AllCategoryService().getAllCategory(tokenReader.toString()),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<CategoryModel> categories = snapshot.data!;
