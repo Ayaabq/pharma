@@ -64,91 +64,97 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
         title: const Text("Categories"),
         backgroundColor: const Color.fromARGB(255, 67, 201, 201),
       ),
-      body: FutureBuilder<List<CategoryModel>>(
-        future: AllCategoryService().getAllCategory(tokenReader.toString()),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            List<CategoryModel> categories = snapshot.data!;
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.fromLTRB(10, 11, 10, 0),
-                  padding: const EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24),
-                    color: Colors.grey[300],
-                  ),
-                  child: const Row(
-                    children: [
-                      Icon(
-                        Icons.search,
-                      ),
-                      Text(
-                        'Search for a medicine',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-                CarouselSlider.builder(
-                    carouselController: controller,
-                    itemCount: urlImages.length,
-                    itemBuilder: (context, index, realIndex) {
-                      final urlImage = urlImages[index];
-                      return buildImage(urlImage, index);
-                    },
-                    options: CarouselOptions(
-                        autoPlay: true,
-                        enableInfiniteScroll: false,
-                        autoPlayAnimationDuration: Duration(seconds: 3),
-                        enlargeCenterPage: true,
-                        onPageChanged: (index, reason) =>
-                            setState(() => activeIndex = index))),
-                SizedBox(height: 12),
-                buildIndicator(),
-                // Padding(
-                //   padding: const EdgeInsets.fromLTRB(13, 11, 13, 1),
-                //   child: ClipRRect(
-                //     borderRadius: BorderRadius.circular(20),
-                //     child: Image(
-                //       image: AssetImage('images/digital_health.jpg'),
-                //     ),
-                //   ),
-                // ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(10, 15, 0, 0),
-                  child: Text(
-                    'Your Category',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
-                  ),
-                ),
-                Expanded(
-                  child: GridView.builder(
-                      itemCount: categories.length,
-                      clipBehavior: Clip.none,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        childAspectRatio: 0.99,
-                        crossAxisSpacing: 4,
-                        mainAxisSpacing: 0,
-                      ),
-                      itemBuilder: (context, index) {
-                        return CategoryGridItem(category: categories[index]);
-                      }),
-                ),
-              ],
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+      body: Column(
+
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+          Container(
+          width: double.infinity,
+          margin: const EdgeInsets.fromLTRB(10, 11, 10, 0),
+          padding: const EdgeInsets.all(15),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            color: Colors.grey[300],
+          ),
+          child: const Row(
+            children: [
+              Icon(
+                Icons.search,
+              ),
+              Text(
+                'Search for a medicine',
+                style: TextStyle(fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+        CarouselSlider.builder(
+            carouselController: controller,
+            itemCount: urlImages.length,
+            itemBuilder: (context, index, realIndex) {
+              final urlImage = urlImages[index];
+              return buildImage(urlImage, index);
+            },
+            options: CarouselOptions(
+                autoPlay: true,
+                enableInfiniteScroll: false,
+                autoPlayAnimationDuration: Duration(seconds: 3),
+                enlargeCenterPage: true,
+                onPageChanged: (index, reason) =>
+                    setState(() => activeIndex = index))),
+        SizedBox(height: 12),
+        buildIndicator(),
+        // Padding(
+        //   padding: const EdgeInsets.fromLTRB(13, 11, 13, 1),
+        //   child: ClipRRect(
+        //     borderRadius: BorderRadius.circular(20),
+        //     child: Image(
+        //       image: AssetImage('images/digital_health.jpg'),
+        //     ),
+        //   ),
+        // ),
+        Container(
+          padding: EdgeInsets.fromLTRB(10, 15, 0, 0),
+          child: Text(
+            'Your Category',
+            textAlign: TextAlign.start,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
+          ),
+        ),
+
+
+          FutureBuilder<List<CategoryModel>>(
+            future: AllCategoryService().getAllCategory(tokenReader.toString()),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                List<CategoryModel> categories = snapshot.data!;
+                return
+                    Expanded(
+                      child: GridView.builder(
+                          itemCount: categories.length,
+                          clipBehavior: Clip.none,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            childAspectRatio: 0.99,
+                            crossAxisSpacing: 4,
+                            mainAxisSpacing: 0,
+                          ),
+                          itemBuilder: (context, index) {
+                            return CategoryGridItem(category: categories[index]);
+                          }),
+                    )
+
+                ;
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          ),
+        ],
       ),
     );
   }
