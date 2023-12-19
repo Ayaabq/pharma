@@ -57,12 +57,11 @@ class AuthServices {
     }
   }
 
-
-  Future<int> deleteToken (String token) async{
-    final url= "http://10.0.2.2:8000/api/logout";
-    final response = await http.post(Uri.parse(url),
-       headers: {'Authorization': 'Bearer $token'},
-
+  Future<int> deleteToken(String token) async {
+    final url = "http://10.0.2.2:8000/api/logout";
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {'Authorization': 'Bearer $token'},
     );
     print(response.statusCode);
     if (response.statusCode == 200) {
@@ -72,7 +71,6 @@ class AuthServices {
       // then throw an exception.
       throw Exception('Failed to logout');
     }
-
   }
 }
 

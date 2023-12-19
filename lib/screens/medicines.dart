@@ -5,7 +5,7 @@ import 'package:pharma/widgets/medicine_item.dart';
 class MedicinesScreen extends StatelessWidget {
   MedicinesScreen({super.key, required this.title, required this.medicines});
   final String title;
-  List<Medicine> medicines;
+  List<MedicineModel> medicines;
 
   @override
   Widget build(BuildContext context) {
