@@ -3,7 +3,7 @@ import 'package:pharma/models/medicine.dart';
 
 class MedicineItem extends StatelessWidget {
   const MedicineItem({super.key, required this.medicine});
-  final Medicine medicine;
+  final MedicineModel medicine;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -22,7 +22,7 @@ class MedicineItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                medicine.tjaryName,
+                medicine.commercial_name.toString(),
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(

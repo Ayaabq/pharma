@@ -7,12 +7,12 @@ class CategoryGridItem extends StatelessWidget {
     required this.category,
     super.key,
     //required this.category,
-    //required this.onSelectedCategory,
+    required this.onSelectedCategory,
   });
 
   CategoryModel category;
   //final Category category;
-  //final Function() onSelectedCategory;
+  final Function(int id) onSelectedCategory;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -21,7 +21,7 @@ class CategoryGridItem extends StatelessWidget {
         color: Colors.greenAccent[100],
         child: InkWell(
           onTap: () {
-            //onSelectedCategory();
+            onSelectedCategory(category.id);
           },
           //splashColor: category.color,
           borderRadius: BorderRadius.circular(16),

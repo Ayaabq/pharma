@@ -14,6 +14,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pharma/widgets/side_drawer/main_drawer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carousel_slider/carousel_controller.dart';
+import 'package:pharma/services/get_medicine_service.dart';
+import 'package:pharma/models/medicine.dart';
 
 class CategoriesScreen extends ConsumerStatefulWidget {
   const CategoriesScreen({super.key});
@@ -23,17 +25,17 @@ class CategoriesScreen extends ConsumerStatefulWidget {
 }
 
 class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
-  void _selectCategory(BuildContext context, Category category) {
-    final filteredMedicine = dummyMedicine
-        .where(
-          (medicine) => medicine.category.contains(category.id),
-        )
-        .toList();
+  void _selectCategory(CategoryModel category, int id, WidgetRef ref) async {
+    final tokenWathcer = ref.watch(tokenProvider);
+
+    final medicineWatcher = await ref
+        .watch(medicineProvider)
+        .getAllMedicine(tokenWathcer.toString(), id);
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (ctx) => MedicinesScreen(
-          title: category.title,
-          medicines: filteredMedicine,
+          title: category.name,
+          medicines: medicineWatcher,
         ),
       ),
     );
@@ -43,16 +45,8 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
   final controller = CarouselController();
   final urlImages = [
     'assets/images/second_med.jpg',
-
     'assets/images/third_screen.jpg',
     'assets/images/digital_health.jpg',
-
-    // 'https://images.unsplash.com/photo-1612825173281-9a193378527e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=499&q=80',
-    // 'https://images.unsplash.com/photo-1580654712603-eb43273aff33?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-    // 'https://images.unsplash.com/photo-1627916607164-7b20241db935?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80',
-    // 'https://images.unsplash.com/photo-1522037576655-7a93ce0f4d10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-    // 'https://images.unsplash.com/photo-1570829053985-56e661df1ca2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-    //
   ];
 
   @override
@@ -103,24 +97,15 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
                     options: CarouselOptions(
                         autoPlay: true,
                         enableInfiniteScroll: false,
-                        autoPlayAnimationDuration: Duration(seconds: 3),
+                        autoPlayAnimationDuration: const Duration(seconds: 3),
                         enlargeCenterPage: true,
                         onPageChanged: (index, reason) =>
                             setState(() => activeIndex = index))),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 buildIndicator(),
-                // Padding(
-                //   padding: const EdgeInsets.fromLTRB(13, 11, 13, 1),
-                //   child: ClipRRect(
-                //     borderRadius: BorderRadius.circular(20),
-                //     child: Image(
-                //       image: AssetImage('images/digital_health.jpg'),
-                //     ),
-                //   ),
-                // ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 15, 0, 0),
-                  child: Text(
+                  padding: const EdgeInsets.fromLTRB(10, 15, 0, 0),
+                  child: const Text(
                     'Your Category',
                     textAlign: TextAlign.start,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
@@ -138,7 +123,12 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
                         mainAxisSpacing: 0,
                       ),
                       itemBuilder: (context, index) {
-                        return CategoryGridItem(category: categories[index]);
+                        return CategoryGridItem(
+                          category: categories[index],
+                          onSelectedCategory: (int id) {
+                            _selectCategory(categories[index], id, ref);
+                          },
+                        );
                       }),
                 ),
               ],
@@ -156,7 +146,7 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
   Widget buildIndicator() => Center(
         child: AnimatedSmoothIndicator(
           onDotClicked: animateToSlide,
-          effect: ExpandingDotsEffect(
+          effect: const ExpandingDotsEffect(
             dotWidth: 15,
             activeDotColor: Colors.blue,
             expansionFactor: 2,
@@ -170,7 +160,7 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
 }
 
 Widget buildImage(String urlImage, int index) => Container(
-    margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+    margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
     //padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
     child: ClipRRect(
       borderRadius: BorderRadius.circular(15),
