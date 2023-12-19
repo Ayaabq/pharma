@@ -1,3 +1,4 @@
+// import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma/data/dummy_data_category.dart';
@@ -8,6 +9,7 @@ import 'package:pharma/providers/auth_data_provider.dart';
 import 'package:pharma/providers/user_provider.dart';
 import 'package:pharma/screens/medicines.dart';
 import 'package:pharma/services/get_categories_service.dart';
+import 'package:pharma/widgets/cart/cart_floating_button.dart';
 import 'package:pharma/widgets/category_grid_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pharma/widgets/search/search_button.dart';
@@ -16,6 +18,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:pharma/services/get_medicine_service.dart';
 import 'package:pharma/models/medicine.dart';
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 
 
 
@@ -50,7 +53,13 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
     'assets/images/third_screen.jpg',
     'assets/images/digital_health.jpg',
   ];
-
+int _bottomNavIndex =0;
+List <IconData> _Icons=[Icons.add_shopping_cart_outlined,
+  Icons.account_circle_sharp,
+  Icons.home,
+  // Icons.access_alarms_rounded,
+  // I
+];
   @override
   Widget build(BuildContext context) {
     final tokenReader = ref.read(tokenProvider);
@@ -60,6 +69,9 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
         title: const Text("Categories"),
         backgroundColor: const Color.fromARGB(255, 67, 201, 201),
       ),
+      floatingActionButton: CartFloatingButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
       body: Column(
 
           mainAxisAlignment: MainAxisAlignment.start,
