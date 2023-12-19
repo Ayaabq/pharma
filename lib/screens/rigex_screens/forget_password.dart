@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pharma/screens/rigex_sreens/login.dart';
+import 'package:pharma/screens/rigex_screens/login.dart';
 
 import '../../widgets/rigix/T_button.dart';
-import '../../widgets/rigix/forms_text_field.dart';
+import '../../widgets/rigix/rigix_text_field.dart';
 import '../../widgets/rigix/rigix_text.dart';
 import '../../widgets/rigix/rounded_button.dart';
 
@@ -37,7 +37,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 const SizedBox(
                   height: 35,
                 ),
-                FormsTextField(
+                RigixTextField(
                   topic: FormsTopic.phoneNumber,
                   label: "enter your phone number here",
                   ctrl: TextEditingController(),
@@ -45,7 +45,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                FormsTextField(
+                RigixTextField(
                     topic: FormsTopic.password,
                     ctrl: TextEditingController(),
                     label: "enter your password here"),

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma/models/rigex/register.dart';
 import 'package:pharma/screens/categories.dart';
-import 'package:pharma/screens/rigex_sreens/login.dart';
+import 'package:pharma/screens/rigex_screens/login.dart';
 import 'package:pharma/services/auth_service.dart';
 import '../../controllers/register_controllers.dart';
 import '../../models/user.dart';
 import '../../providers/auth_data_provider.dart';
 import '../../providers/user_provider.dart';
 import '../../widgets/rigix/T_button.dart';
-import '../../widgets/rigix/forms_text_field.dart';
+import '../../widgets/rigix/rigix_text_field.dart';
 import '../../widgets/rigix/rigix_text.dart';
 import '../../widgets/rigix/rounded_button.dart';
 
@@ -80,35 +80,35 @@ class RegisterScreen extends ConsumerWidget {
                   const SizedBox(
                     height: 35,
                   ),
-                  FormsTextField(
+                  RigixTextField(
                       ctrl: RegisterController.userNameController,
                       topic: FormsTopic.userName,
                       label: "enter your user name"),
                   const SizedBox(
                     height: 16,
                   ),
-                  FormsTextField(
+                  RigixTextField(
                       ctrl: RegisterController.phoneController,
                       topic: FormsTopic.phoneNumber,
                       label: "enter your phone number here"),
                   const SizedBox(
                     height: 16,
                   ),
-                  FormsTextField(
+                  RigixTextField(
                       ctrl: RegisterController.emailController,
                       topic: FormsTopic.email,
                       label: "enter your email here"),
                   const SizedBox(
                     height: 16,
                   ),
-                  FormsTextField(
+                  RigixTextField(
                       ctrl: RegisterController.passwordController,
                       topic: FormsTopic.password,
                       label: "enter your password here"),
                   const SizedBox(
                     height: 16,
                   ),
-                  FormsTextField(
+                  RigixTextField(
                       ctrl: RegisterController.confPasswordController,
                       topic: FormsTopic.confirmPassword,
                       label: "enter your password here"),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma/screens/categories.dart';
 
-import 'package:pharma/screens/rigex_sreens/splash.dart';
+import 'package:pharma/screens/rigex_screens/splash.dart';
 
 var kColorScheme =
     ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 67, 201, 201));

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:pharma/controllers/register_controllers.dart';
-import 'package:pharma/screens/rigex_sreens/register.dart';
+import 'package:pharma/screens/rigex_screens/register.dart';
 import 'package:regexpattern/regexpattern.dart';
 
 
@@ -23,17 +23,17 @@ Map<FormsTopic,IconData> kFormIcon={
 };
 
 
-class FormsTextField extends StatefulWidget {
+class RigixTextField extends StatefulWidget {
 
-  FormsTextField({super.key, required this.topic, required this.label, required this.ctrl});
+  RigixTextField({super.key, required this.topic, required this.label, required this.ctrl});
     FormsTopic topic;
     String label;
     TextEditingController ctrl;
   @override
-  State<FormsTextField> createState() => _FormsTextFieldState();
+  State<RigixTextField> createState() => _RigixTextFieldState();
 }
 
-class _FormsTextFieldState extends State<FormsTextField> {
+class _RigixTextFieldState extends State<RigixTextField> {
 
   String? email;
 

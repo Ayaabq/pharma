@@ -6,10 +6,10 @@ import 'package:pharma/models/rigex/login.dart';
 import 'package:pharma/providers/auth_data_provider.dart';
 import 'package:pharma/providers/user_provider.dart';
 import 'package:pharma/screens/categories.dart';
-import 'package:pharma/screens/rigex_sreens/forget_password.dart';
-import 'package:pharma/screens/rigex_sreens/register.dart';
+import 'package:pharma/screens/rigex_screens/forget_password.dart';
+import 'package:pharma/screens/rigex_screens/register.dart';
 import 'package:pharma/services/auth_service.dart';
-import 'package:pharma/widgets/rigix/forms_text_field.dart';
+import 'package:pharma/widgets/rigix/rigix_text_field.dart';
 import 'package:pharma/widgets/rigix/rigix_text.dart';
 import 'package:pharma/widgets/rigix/rounded_button.dart';
 import 'package:pharma/widgets/rigix/T_button.dart';
@@ -82,14 +82,14 @@ class LoginScreen extends ConsumerWidget {
                   const SizedBox(
                     height: 35,
                   ),
-                  FormsTextField(
+                  RigixTextField(
                       ctrl: phoneCtrl,
                       topic: FormsTopic.phoneNumber,
                       label: "enter your phone number here"),
                   const SizedBox(
                     height: 16,
                   ),
-                  FormsTextField(
+                  RigixTextField(
                       ctrl: passwordCtrl,
                       topic: FormsTopic.password,
                       label: "enter your password here"),

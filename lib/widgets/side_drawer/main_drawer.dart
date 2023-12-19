@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma/providers/auth_data_provider.dart';
-import 'package:pharma/screens/rigex_sreens/login.dart';
+import 'package:pharma/screens/rigex_screens/login.dart';
 import 'package:pharma/services/auth_service.dart';
 import 'package:pharma/widgets/side_drawer/drawer_option.dart';
 import 'package:pharma/widgets/side_drawer/header.dart';

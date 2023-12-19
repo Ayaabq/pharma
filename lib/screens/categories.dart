@@ -10,6 +10,7 @@ import 'package:pharma/screens/medicines.dart';
 import 'package:pharma/services/get_categories_service.dart';
 import 'package:pharma/widgets/category_grid_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:pharma/widgets/search/search_button.dart';
 import 'package:pharma/widgets/side_drawer/main_drawer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carousel_slider/carousel_controller.dart';
@@ -72,17 +73,7 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
             borderRadius: BorderRadius.circular(24),
             color: Colors.grey[300],
           ),
-          child: const Row(
-            children: [
-              Icon(
-                Icons.search,
-              ),
-              Text(
-                'Search for a medicine',
-                style: TextStyle(fontSize: 16),
-              ),
-            ],
-          ),
+          child: const SearchButton() ,
         ),
         CarouselSlider.builder(
             carouselController: controller,
