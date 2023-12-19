@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma/data/dummy_data_category.dart';
 import 'package:pharma/data/dummy_data_medicine.dart';
 import 'package:pharma/models/category.dart';
-
 import 'package:pharma/models/category/category_model.dart';
 import 'package:pharma/providers/auth_data_provider.dart';
 import 'package:pharma/providers/user_provider.dart';
@@ -16,6 +15,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:pharma/services/get_medicine_service.dart';
 import 'package:pharma/models/medicine.dart';
+
+
 
 class CategoriesScreen extends ConsumerStatefulWidget {
   const CategoriesScreen({super.key});
