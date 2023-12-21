@@ -45,6 +45,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   flutter_riverpod: ^2.4.9
   animated_bottom_navigation_bar: ^1.3.0
+  flutter_svg: ^2.0.9
 
 
 
@@ -77,6 +78,7 @@ flutter:
    - assets/images/digital_health.jpg
    - assets/images/second_med.jpg
    - assets/images/third_screen.jpg
+   - assets/images/pill.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
