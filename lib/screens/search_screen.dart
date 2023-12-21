@@ -37,6 +37,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       ),
     );
   }
+
   List<CategoryModel> categories = [];
   List<MedicineModel> medicines = [];
   // the state refer to the state of the widget
@@ -51,34 +52,29 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     var data = await SearchServices().serch(search, tokenWatcher.toString());
 
     if (data == null) {
-
       setState(() {
-        state=0;
+        state = 0;
       });
     } else if (data.containsKey(0)) {
-      state=2;
+      state = 2;
       medicines = data[0]!.map((e) => MedicineModel.fromJson(e)).toList();
-      categories=[];
-      setState(() {
-
-      });
+      categories = [];
+      setState(() {});
       for (var e in medicines) {
         print(e.commercial_name);
       }
     } else if (data.containsKey(1)) {
-      state=1;
+      state = 1;
       categories = data[1]!.map((e) => CategoryModel.fromJson(e)).toList();
-      medicines=[];
-      setState(() {
-
-      });
+      medicines = [];
+      setState(() {});
       for (var e in categories) {
         print(e.name);
       }
     }
   }
-  late FocusNode _focusNode;
 
+  late FocusNode _focusNode;
 
   @override
   void initState() {
@@ -95,28 +91,32 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor:const Color.fromARGB(255, 67, 201, 201)
-      ),
+      appBar: AppBar(backgroundColor: const Color.fromARGB(255, 67, 201, 201)),
       body: Column(children: [
         SearchTextField(
           onEnter: _onEnter,
           focusNode: _focusNode,
         ),
-        if(state==0)
-         const  Text("No Results match"),
-        if(state!=0 && state!=3)
-        Expanded(
-          child: ListView.builder(
-              itemCount: state==1? categories.length : medicines.length,
-              itemBuilder: (context, index) {
-
-                return ListTile(
-                  title:state==1?CategoryGridItem(category: categories[index], onSelectedCategory: (int id) { _selectCategory(categories[index], id, ref); },):
-                  MedicineItem(medicine: medicines[index],),
-                );
-              }),
-        )
+        if (state == 0) const Text("No Results match"),
+        if (state != 0 && state != 3)
+          Expanded(
+            child: ListView.builder(
+                itemCount: state == 1 ? categories.length : medicines.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: state == 1
+                        ? CategoryGridItem(
+                            category: categories[index],
+                            onSelectedCategory: (int id) {
+                              _selectCategory(categories[index], id, ref);
+                            },
+                          )
+                        : MedicineItem(
+                            medicine: medicines[index],
+                            ),
+                  );
+                }),
+          )
       ]),
     );
   }

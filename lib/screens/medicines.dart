@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:pharma/models/medicine.dart';
+import 'package:pharma/screens/medicine_details_screen.dart';
 import 'package:pharma/widgets/medicine_item.dart';
 
 class MedicinesScreen extends StatelessWidget {
   MedicinesScreen({super.key, required this.title, required this.medicines});
   final String title;
   List<MedicineModel> medicines;
+  // _selectMedicine(context) {
+  //   Navigator.of(context).push(
+  //     MaterialPageRoute(
+  //       builder: (ctx) => MedDetails(),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +42,10 @@ class MedicinesScreen extends StatelessWidget {
       content = ListView.builder(
         itemCount: medicines.length,
         padding: const EdgeInsets.symmetric(horizontal: 5),
-        itemBuilder: (ctx, index) => MedicineItem(medicine: medicines[index]),
+        itemBuilder: (ctx, index) => MedicineItem(
+          medicine: medicines[index],
+          // onSelectedMedicine: _selectMedicine(context),
+        ),
       );
     }
     return Scaffold(
