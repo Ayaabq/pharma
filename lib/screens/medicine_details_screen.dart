@@ -27,7 +27,7 @@ class _MedDetailsState extends State<MedDetails> {
               children: [
                 SvgPicture.asset(
                   color: const Color.fromARGB(255, 67, 201, 201),
-                  'images/pill.svg',
+                  'assets/images/pill.svg',
                   width: 90,
                   height: 90,
                 ),
