@@ -78,6 +78,7 @@ flutter:
    - assets/images/digital_health.jpg
    - assets/images/second_med.jpg
    - assets/images/third_screen.jpg
+   - assets/images/pill.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
