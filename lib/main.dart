@@ -27,6 +27,8 @@ class _MyAppState extends State<MyApp> {
             backgroundColor: kColorScheme.onPrimaryContainer,
             foregroundColor: kColorScheme.primaryContainer,
           )),
+       themeMode: ThemeMode.dark,
+
       home: Scaffold(
           body:  //CategoriesScreen()
              SplashScreen()
