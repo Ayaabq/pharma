@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pharma/models/medicine.dart';
+import 'package:pharma/providers/auth_data_provider.dart';
+import 'package:pharma/services/get_medicine_service.dart';
 
 class MedDetails extends StatefulWidget {
-  const MedDetails({super.key});
-
+  const MedDetails({
+    super.key,
+    required this.medicine,
+  });
+  final MedicineModel medicine;
   @override
   State<MedDetails> createState() => _MedDetailsState();
 }
@@ -44,7 +51,8 @@ class _MedDetailsState extends State<MedDetails> {
                     ),
                     SizedBox(height: 5),
                     Text(
-                      'paracetamol',
+                      widget.medicine.commercial_name.toString(),
+                      //medicine.name.toString(),
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -61,7 +69,7 @@ class _MedDetailsState extends State<MedDetails> {
                     ),
                     SizedBox(height: 5),
                     Text(
-                      '10\$',
+                      '${widget.medicine.cost.toString()}\$',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -85,7 +93,7 @@ class _MedDetailsState extends State<MedDetails> {
             ),
             const SizedBox(height: 5),
             Text(
-              'Ancolen',
+              widget.medicine.scientific_name.toString(),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -103,7 +111,7 @@ class _MedDetailsState extends State<MedDetails> {
             ),
             const SizedBox(height: 5),
             Text(
-              'Med Comp',
+              widget.medicine.company.toString(),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

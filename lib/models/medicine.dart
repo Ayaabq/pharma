@@ -1,4 +1,5 @@
 class MedicineModel {
+  final int id;
   final int category_id;
   final String scientific_name;
   final String commercial_name;
@@ -8,6 +9,7 @@ class MedicineModel {
   final int cost;
 
   MedicineModel({
+    required this.id,
     required this.category_id,
     required this.scientific_name,
     required this.commercial_name,
@@ -19,6 +21,7 @@ class MedicineModel {
 
   factory MedicineModel.fromJson(dynamic jsonData) {
     return MedicineModel(
+      id: jsonData['id'],
       category_id: jsonData['category_id'],
       scientific_name: jsonData['scientific_name'],
       commercial_name: jsonData['commercial_name'],

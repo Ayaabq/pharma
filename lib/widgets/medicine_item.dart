@@ -3,9 +3,10 @@ import 'package:pharma/models/medicine.dart';
 import 'package:pharma/screens/medicine_details_screen.dart';
 
 class MedicineItem extends StatelessWidget {
-  MedicineItem({super.key, required this.medicine});
+  const MedicineItem(
+      {super.key, required this.medicine, required this.onSelectedMedicine});
   final MedicineModel medicine;
-  // final Function(BuildContext context) onSelectedMedicine;
+  final Function(int medId) onSelectedMedicine;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -14,8 +15,11 @@ class MedicineItem extends StatelessWidget {
       color: Colors.white54,
       child: InkWell(
         onTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (ctx) => MedDetails()));
+          onSelectedMedicine(medicine.id);
+          // Navigator.of(context).push(MaterialPageRoute(
+          //     builder: (ctx) => MedDetails(
+          //           medicine: medicine,
+          //         )));
         },
         borderRadius: BorderRadius.circular(16),
         child: Padding(

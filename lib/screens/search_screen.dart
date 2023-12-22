@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pharma/screens/medicine_details_screen.dart';
 import 'package:pharma/widgets/category_grid_item.dart';
 import 'package:pharma/widgets/medicine_item.dart';
 import 'package:pharma/widgets/search/search_text_field.dart';
@@ -34,6 +35,18 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           title: category.name,
           medicines: medicineWatcher,
         ),
+      ),
+    );
+  }
+
+  void _selectMedicine(MedicineModel medicine, int id, WidgetRef ref) async {
+    final tokenWathcer = ref.watch(tokenProvider);
+    final medicineDetailsWatcher = await ref
+        .watch(medicineProvider)
+        .getAllMedicine(tokenWathcer.toString(), id);
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (ctx) => MedDetails(medicine: medicine),
       ),
     );
   }
@@ -113,7 +126,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                           )
                         : MedicineItem(
                             medicine: medicines[index],
-                            ),
+                            onSelectedMedicine: (int id) {
+                              _selectMedicine(medicines[index], id, ref);
+                            },
+                          ),
                   );
                 }),
           )
