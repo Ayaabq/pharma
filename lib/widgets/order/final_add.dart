@@ -15,7 +15,7 @@ class _FinalAddButtonState extends State<FinalAddButton> {
       height: 65,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        color: Theme.of(context).colorScheme.surfaceTint,
+        color: Theme.of(context).colorScheme.primary,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
