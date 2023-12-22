@@ -26,7 +26,7 @@ class AddContainer extends StatelessWidget {
           AddItemButton(),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal:  5),
-            child: FinalAddButton(),
+            child: FinalAddButton(onTap: (){},),
           )
         ],
       ));
