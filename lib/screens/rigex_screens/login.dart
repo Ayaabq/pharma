@@ -14,6 +14,7 @@ import 'package:pharma/widgets/rigix/rigix_text.dart';
 import 'package:pharma/widgets/rigix/rounded_button.dart';
 import 'package:pharma/widgets/rigix/T_button.dart';
 import 'package:http/http.dart' as http;
+import '../../data/error_message.dart';
 import '../../data/rigex.dart';
 
 class LoginScreen extends ConsumerWidget {
@@ -21,7 +22,19 @@ class LoginScreen extends ConsumerWidget {
   final _formKey = GlobalKey<FormState>();
   var phoneCtrl = TextEditingController();
   var passwordCtrl = TextEditingController();
-
+  void _showErrorSnackBar(BuildContext context, String content) {
+    final snackBar = SnackBar(
+      content: Text(content),
+      duration: Duration(seconds: 3),
+      action: SnackBarAction(
+        label: 'Dismiss',
+        onPressed: () {
+          // Perform any additional action if needed
+        },
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
   void _onSaved(BuildContext context, WidgetRef ref) async {
     if (_formKey.currentState!.validate()) {
       // if(users.where((user) {
@@ -35,12 +48,19 @@ class LoginScreen extends ConsumerWidget {
           phone: phoneCtrl.text.toString(),
           password: passwordCtrl.text.toString());
       final _authWatcher = await ref.watch(authProvider).getUser(login);
-      ref.watch(userProvider.notifier).setUser(_authWatcher.user!);
-      ref.watch(tokenProvider.notifier).setToken(_authWatcher.token!);
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
-        return const CategoriesScreen();
-        //return HomeScreen();
-      }));
+      if(error==null) {
+        ref.watch(userProvider.notifier).setUser(_authWatcher!.user!);
+        ref.watch(tokenProvider.notifier).setToken(_authWatcher.token!);
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
+          return const CategoriesScreen();
+          //return HomeScreen();
+        }));
+      }
+      if(error!=null){
+        print(error);
+        _showErrorSnackBar(context, error!);
+        error =null;
+      }
     }
   }
 

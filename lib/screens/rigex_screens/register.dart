@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma/models/rigex/register.dart';
@@ -5,6 +6,7 @@ import 'package:pharma/screens/categories.dart';
 import 'package:pharma/screens/rigex_screens/login.dart';
 import 'package:pharma/services/auth_service.dart';
 import '../../controllers/register_controllers.dart';
+import '../../data/error_message.dart';
 import '../../models/user.dart';
 import '../../providers/auth_data_provider.dart';
 import '../../providers/user_provider.dart';
@@ -21,8 +23,22 @@ class RegisterScreen extends ConsumerWidget {
 
   // the form key
   final _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   late RegisterModel watcher;
   // this function will execute when the register button pressed
+  void _showErrorSnackBar(BuildContext context, String content) {
+    final snackBar = SnackBar(
+      content: Text(content),
+      duration: Duration(seconds: 3),
+      action: SnackBarAction(
+        label: 'Dismiss',
+        onPressed: () {
+          // Perform any additional action if needed
+        },
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
   void _onSaved(BuildContext context, WidgetRef ref) async {
     //check the validation
     if (_formKey.currentState!.validate()) {
@@ -38,24 +54,24 @@ class RegisterScreen extends ConsumerWidget {
       ));
 
       // calling the api function
-      // final _registerFutuerWatcher=  await ref.watch(registerDataProvider);
       final _authWatcher =
           await ref.watch(authProvider).createUser(registerModel);
 
-      //   _registerFutuerWatcher.when(data: (data){
-      //
-      //  },
-      //       error: (err, s)=> Text(err.toString()),
-      //       loading: ()=>showDialog(context: context, builder: (ctx)=> CircularProgressIndicator()),
-      //
-      // );
-      ref.watch(userProvider.notifier).setUser(_authWatcher.user!);
+    if(error==null){
+      ref.watch(userProvider.notifier).setUser(_authWatcher!.user!);
       ref.watch(tokenProvider.notifier).setToken(_authWatcher.token!);
-
       //  await AuthServices().createUser(registerModel);
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
         return const CategoriesScreen();
       }));
+    }
+      print("from scren $error");
+        if(error!=null){
+          print(error);
+          _showErrorSnackBar(context, error!);
+          error =null;
+        }
+
     }
   }
 
@@ -68,6 +84,7 @@ class RegisterScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      key: _scaffoldKey,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
