@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pharma/screens/medicine_details_screen.dart';
 import 'package:pharma/widgets/category_grid_item.dart';
 import 'package:pharma/widgets/medicine_item.dart';
 import 'package:pharma/widgets/search/search_text_field.dart';
@@ -35,18 +34,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           title: category.name,
           medicines: medicineWatcher,
         ),
-      ),
-    );
-  }
-
-  void _selectMedicine(MedicineModel medicine, int id, WidgetRef ref) async {
-    final tokenWathcer = ref.watch(tokenProvider);
-    final medicineDetailsWatcher = await ref
-        .watch(medicineProvider)
-        .getAllMedicine(tokenWathcer.toString(), id);
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (ctx) => MedDetails(medicine: medicine),
       ),
     );
   }
@@ -103,6 +90,19 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Widget content =const  Text("No Results match");
+    if(state!=0 && state!=3)
+      content= Expanded(
+        child: ListView.builder(
+            itemCount: state==1? categories.length : medicines.length,
+            itemBuilder: (context, index) {
+
+              return ListTile(
+                title:state==1?CategoryGridItem(category: categories[index], onSelectedCategory: (int id) { _selectCategory(categories[index], id, ref); },):
+                MedicineItem(medicine: medicines[index],),
+              );
+            }),
+      );
     return Scaffold(
       appBar: AppBar(backgroundColor: const Color.fromARGB(255, 67, 201, 201)),
       body: Column(children: [
@@ -110,29 +110,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           onEnter: _onEnter,
           focusNode: _focusNode,
         ),
-        if (state == 0) const Text("No Results match"),
-        if (state != 0 && state != 3)
-          Expanded(
-            child: ListView.builder(
-                itemCount: state == 1 ? categories.length : medicines.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: state == 1
-                        ? CategoryGridItem(
-                            category: categories[index],
-                            onSelectedCategory: (int id) {
-                              _selectCategory(categories[index], id, ref);
-                            },
-                          )
-                        : MedicineItem(
-                            medicine: medicines[index],
-                            onSelectedMedicine: (int id) {
-                              _selectMedicine(medicines[index], id, ref);
-                            },
-                          ),
-                  );
-                }),
-          )
+
+        if(state !=3)
+          content
+
       ]),
     );
   }
