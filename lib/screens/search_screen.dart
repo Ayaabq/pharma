@@ -104,8 +104,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     Widget content = const Text("No Results match");
-    if (state != 0 && state != 3)
-      content = Expanded(
+    if (state != 0 && state != 3) {
+      content =Expanded(
         child: ListView.builder(
             itemCount: state == 1 ? categories.length : medicines.length,
             itemBuilder: (context, index) {
@@ -126,6 +126,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               );
             }),
       );
+    }
     return Scaffold(
       appBar: AppBar(backgroundColor: const Color.fromARGB(255, 67, 201, 201)),
       body: Column(children: [

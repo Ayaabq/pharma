@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pharma/models/medicine.dart';
 import 'package:pharma/providers/auth_data_provider.dart';
 import 'package:pharma/services/get_medicine_service.dart';
+import 'package:pharma/widgets/order/adding_item.dart';
+import 'package:pharma/widgets/order/add_container.dart';
 
 class MedDetails extends StatefulWidget {
   const MedDetails({
@@ -41,7 +43,7 @@ class _MedDetailsState extends State<MedDetails> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Medicine Name',
                       style: TextStyle(
                         color: Colors.grey,
@@ -49,17 +51,17 @@ class _MedDetailsState extends State<MedDetails> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(height: 5),
+                   const  SizedBox(height: 5),
                     Text(
                       widget.medicine.commercial_name.toString(),
                       //medicine.name.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 15),
-                    Text(
+                   const  SizedBox(height: 15),
+                   const Text(
                       'Price',
                       style: TextStyle(
                         color: Colors.grey,
@@ -67,7 +69,7 @@ class _MedDetailsState extends State<MedDetails> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(height: 5),
+                   const SizedBox(height: 5),
                     Text(
                       '${widget.medicine.cost.toString()}\$',
                       style: TextStyle(
@@ -119,10 +121,10 @@ class _MedDetailsState extends State<MedDetails> {
             ),
             //spacer to the end of the screen
             const Spacer(),
-            TextButton(
-              onPressed: () {},
-              child: Text('Add to the Cart'),
-            ),
+
+
+               AddContainer(),
+
           ],
         ),
       ),

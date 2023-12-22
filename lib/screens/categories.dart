@@ -70,6 +70,20 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
       ),
       floatingActionButton: CartFloatingButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      bottomNavigationBar: BottomNavigationBar(items: [
+      BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      label: 'Home',
+    ),
+    BottomNavigationBarItem(
+    icon: Icon(Icons.search),
+    label: 'Search',
+    ),
+    BottomNavigationBarItem(
+    icon: Icon(Icons.person),
+    label: 'Profile',)
+
+    ],),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
