@@ -14,7 +14,16 @@ class CartNotifier extends StateNotifier<List<Pair<int, MedicineModel>>> {
 
   addItem(MedicineModel medicine , int quantity) {
     List<Pair<int, MedicineModel>> temp= state;
-    temp.add(Pair(quantity, medicine));
+    bool exist =false;
+    for(var p in temp){
+      if(p.second==medicine){
+        p.first+=quantity;
+        exist=true;
+      }
+    }
+    if(!exist) {
+      temp.add(Pair(quantity, medicine));
+    }
     state = temp;
     cart=temp;
   }
@@ -23,3 +32,5 @@ class CartNotifier extends StateNotifier<List<Pair<int, MedicineModel>>> {
 final cartProvider = StateNotifierProvider<CartNotifier, List<Pair<int, MedicineModel>>>((ref) {
   return CartNotifier();
 });
+
+

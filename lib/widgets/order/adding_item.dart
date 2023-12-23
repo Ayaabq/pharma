@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pharma/widgets/order/add_circular_button.dart';
 
+import '../../data/medicine.dart';
+
 class AddItemButton extends StatefulWidget {
-  const AddItemButton({super.key});
+   AddItemButton({super.key,});
 
   @override
   State<AddItemButton> createState() => _AddItemButtonState();
@@ -24,9 +26,13 @@ class _AddItemButtonState extends State<AddItemButton> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-              AddButton(onPressed: (){}, icon: Icons.add),
-              Text("0"),
-              AddButton(onPressed: (){}, icon: Icons.minimize),
+              AddButton(onPressed: (){setState(() {
+                value++;
+              });}, icon: Icons.add),
+              Text("${value}"),
+              AddButton(onPressed: (){setState(() {
+               value--;
+              });}, icon: Icons.minimize),
           ],
         ),
       ),
