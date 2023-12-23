@@ -24,11 +24,6 @@ class LoginScreen extends ConsumerWidget {
 
   void _onSaved(BuildContext context, WidgetRef ref) async {
     if (_formKey.currentState!.validate()) {
-      // if(users.where((user) {
-      //   if(user.phone == phoneCtrl.value && user.password == passwordCtrl.value)
-      //     return true;
-      //   return false;}
-      // ).toList().length<1)
 
       _formKey.currentState!.save();
       final login = LoginModel(
