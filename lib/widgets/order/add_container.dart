@@ -11,7 +11,7 @@ class AddContainer extends StatelessWidget {
 
     return  Container(
       width:  double.infinity,
-      height: 170,
+      height: 150,
       decoration: BoxDecoration(
         color: Theme.of(context).splashColor,
         borderRadius:const  BorderRadius.only(

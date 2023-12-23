@@ -14,7 +14,7 @@ class _FinalAddButtonState extends State<FinalAddButton> {
       onTap: widget.onTap,
       child: Container(
         width: double.infinity,
-        height: 65,
+        height: 55,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
           color: Theme.of(context).colorScheme.primary,

@@ -6,8 +6,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:pharma/models/user.dart';
 
+import '../data/error_message.dart';
+
 class AuthServices {
-  Future<RegisterModel> createUser(RegisterModel register) async {
+  Future<RegisterModel?> createUser(RegisterModel register) async {
     final url = Uri.parse("http://10.0.2.2:8000/api/register");
     final response = await http.post(
       url,
@@ -28,11 +30,13 @@ class AuthServices {
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
-      throw Exception('Failed to create user.');
+      error=jsonDecode(response.body)["message"].toString();
+      print(error);
+      return null;
     }
   }
 
-  Future<LoginModel> getUser(LoginModel login) async {
+  Future<LoginModel?> getUser(LoginModel login) async {
     final url = Uri.parse("http://10.0.2.2:8000/api/login");
     print(login.toJson());
     final response = await http.post(
@@ -53,7 +57,9 @@ class AuthServices {
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
-      throw Exception('Failed to create user.');
+      error=jsonDecode(response.body)["message"].toString();
+      print(error);
+      return null;
     }
   }
 
