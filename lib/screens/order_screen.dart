@@ -44,7 +44,7 @@ class _MedicinesScreenState extends ConsumerState<OrderScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Your Orders"),
+        title: const Text("Your Cart"),
         backgroundColor: Color.fromARGB(255, 67, 201, 201),
       ),
       body: content,

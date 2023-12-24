@@ -105,8 +105,8 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
+              icon: Icon(Icons.mail),
+              label: 'Orders',
             ),
           ],
         ),
