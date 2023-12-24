@@ -11,7 +11,9 @@ class CartNotifier extends StateNotifier<List<Pair<int, MedicineModel>>> {
 
   // pass the initial data:
   CartNotifier() : super([]);
-
+  resetData(){
+    state=[];
+  }
   addItem(MedicineModel medicine , int quantity) {
     List<Pair<int, MedicineModel>> temp= state;
     bool exist =false;

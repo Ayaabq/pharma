@@ -4,8 +4,8 @@ import 'package:pharma/widgets/order/add_circular_button.dart';
 import '../../data/medicine.dart';
 
 class AddItemButton extends StatefulWidget {
-   AddItemButton({super.key,});
-
+   AddItemButton({super.key,required this.quantityLimit});
+   int quantityLimit;
   @override
   State<AddItemButton> createState() => _AddItemButtonState();
 }
@@ -27,10 +27,12 @@ class _AddItemButtonState extends State<AddItemButton> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
               AddButton(onPressed: (){setState(() {
+                  if(value< widget.quantityLimit)
                 value++;
               });}, icon: Icons.add),
               Text("${value}"),
               AddButton(onPressed: (){setState(() {
+                if(value>1)
                value--;
               });}, icon: Icons.minimize),
           ],

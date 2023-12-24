@@ -8,8 +8,9 @@ import 'package:pharma/widgets/order/final_add.dart';
 // color: Theme.of(context).colorScheme.surfaceTint,
 
 class AddContainer extends ConsumerWidget {
-  AddContainer({super.key, required this.medicine});
+  AddContainer({super.key, required this.medicine, });
   MedicineModel medicine;
+
   void _addItem(WidgetRef ref) {
     int quantity = value;
     value = 1;
@@ -18,7 +19,7 @@ class AddContainer extends ConsumerWidget {
     final gg=ref.watch(cartProvider);
     for(var a in gg) {
       print(a.first);
-      print(a.second);
+      print(a.second.scientific_name);
     }
   }
 
@@ -37,7 +38,7 @@ class AddContainer extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            AddItemButton(),
+            AddItemButton(quantityLimit:medicine.quantity_available,),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
               child: FinalAddButton(

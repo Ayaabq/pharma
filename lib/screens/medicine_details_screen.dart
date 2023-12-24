@@ -123,7 +123,7 @@ class _MedDetailsState extends State<MedDetails> {
             const Spacer(),
 
 
-               AddContainer(medicine: widget.medicine,),
+               AddContainer(medicine: widget.medicine),
 
           ],
         ),
