@@ -21,18 +21,16 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData().copyWith(
-          useMaterial3: true,
+          //useMaterial3: true,
           colorScheme: kColorScheme,
           appBarTheme: const AppBarTheme().copyWith(
             backgroundColor: kColorScheme.onPrimaryContainer,
             foregroundColor: kColorScheme.primaryContainer,
           )),
-       themeMode: ThemeMode.dark,
-
+      themeMode: ThemeMode.dark,
       home: Scaffold(
-          body:  //CategoriesScreen()
-             SplashScreen()
-      ),
+          body: //CategoriesScreen()
+              SplashScreen()),
     );
   }
 }

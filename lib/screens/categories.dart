@@ -8,6 +8,7 @@ import 'package:pharma/models/category/category_model.dart';
 import 'package:pharma/providers/auth_data_provider.dart';
 import 'package:pharma/providers/user_provider.dart';
 import 'package:pharma/screens/medicines.dart';
+import 'package:pharma/screens/order_screen.dart';
 import 'package:pharma/services/get_categories_service.dart';
 import 'package:pharma/widgets/cart/cart_floating_button.dart';
 import 'package:pharma/widgets/category_grid_item.dart';
@@ -44,6 +45,14 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
     );
   }
 
+  // void _pressedCartButton() {
+  //   Navigator.of(context).push(
+  //     MaterialPageRoute(
+  //       builder: (ctx) => OrderScreen(),
+  //     ),
+  //   );
+  // }
+
   int activeIndex = 0;
   final controller = CarouselController();
   final urlImages = [
@@ -59,6 +68,7 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
     // Icons.access_alarms_rounded,
     // I
   ];
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     final tokenReader = ref.read(tokenProvider);
@@ -68,22 +78,55 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
         title: const Text("Categories"),
         backgroundColor: const Color.fromARGB(255, 67, 201, 201),
       ),
-      floatingActionButton: CartFloatingButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      bottomNavigationBar: BottomNavigationBar(items: [
-      BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      label: 'Home',
-    ),
-    BottomNavigationBarItem(
-    icon: Icon(Icons.search),
-    label: 'Search',
-    ),
-    BottomNavigationBarItem(
-    icon: Icon(Icons.person),
-    label: 'Profile',)
+      floatingActionButton: CartFloatingButton(
+          // pressedIcon: _pressedCartButton,
+          ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 5.01,
+        clipBehavior: Clip.antiAlias,
+        child: BottomNavigationBar(
+          selectedItemColor: Colors.white,
+          backgroundColor: Colors.teal,
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+              print(_currentIndex);
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+                //color: Colors.white,
+              ),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+          ],
+        ),
+      ),
+      //   floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      //   bottomNavigationBar: BottomNavigationBar(items: [
+      //   BottomNavigationBarItem(
+      //   icon: Icon(Icons.home),
+      //   label: 'Home',
+      // ),
+      // BottomNavigationBarItem(
+      // icon: Icon(Icons.search),
+      // label: 'Search',
+      // ),
+      // BottomNavigationBarItem(
+      // icon: Icon(Icons.person),
+      // label: 'Profile',)
+      //
+      // ],),
 
-    ],),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
