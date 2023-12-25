@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../data/medicine.dart';
 
 class FinalAddButton extends StatefulWidget {
- FinalAddButton({super.key, required this.onTap});
+ FinalAddButton({super.key, required this.onTap, required this.cost});
     void Function() onTap;
+    int cost;
   @override
   State<FinalAddButton> createState() => _FinalAddButtonState();
 }
@@ -23,9 +27,9 @@ class _FinalAddButtonState extends State<FinalAddButton> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-        Text("Add to Cart"),
+        Text("Add to Cart".tr),
       SizedBox(width: 15,),
-        Text("Prise"),
+        Text("${widget.cost*value}"),
       ],),),
     );
   }

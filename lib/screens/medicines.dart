@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:pharma/models/medicine.dart';
 import 'package:pharma/providers/auth_data_provider.dart';
 import 'package:pharma/screens/medicine_details_screen.dart';
@@ -37,14 +38,14 @@ class _MedicinesScreenState extends ConsumerState<MedicinesScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Uh oh ... nothing here!',
+            'Uh oh ... nothing here!'.tr,
             style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                   color: Theme.of(context).colorScheme.onBackground,
                 ),
           ),
           const SizedBox(height: 16),
           Text(
-            'Try selecting a different category!',
+            'Try selecting a different category!'.tr,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: Theme.of(context).colorScheme.onBackground,
                 ),

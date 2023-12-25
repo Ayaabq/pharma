@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pharma/screens/search_screen.dart';
 
 class SearchButton extends StatelessWidget {
@@ -12,13 +13,13 @@ class SearchButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){_onSearch(context);},
-      child: const Row(
+      child:  Row(
         children: [
           Icon(
             Icons.search,
           ),
           Text(
-            'Search for a medicine or category',
+            "Search for a medicine or category".tr,
             style: TextStyle(fontSize: 16),
           ),
         ],

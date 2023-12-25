@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:pharma/screens/medicine_details_screen.dart';
 import 'package:pharma/widgets/category_grid_item.dart';
 import 'package:pharma/widgets/medicine_item.dart';
@@ -103,7 +104,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Widget content = const Text("No Results match");
+    Widget content =  Text("No Results match".tr);
     if (state != 0 && state != 3) {
       content =Expanded(
         child: ListView.builder(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:pharma/models/medicine.dart';
 import 'package:pharma/providers/auth_data_provider.dart';
 import 'package:pharma/services/get_medicine_service.dart';
@@ -23,7 +24,7 @@ class _MedDetailsState extends State<MedDetails> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 67, 201, 201),
-        title: const Text('Details'),
+        title:  Text('Details'.tr),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 40, horizontal: 30),
@@ -43,8 +44,8 @@ class _MedDetailsState extends State<MedDetails> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Medicine Name',
+                     Text(
+                      'Medicine Name'.tr,
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 15,
@@ -61,8 +62,8 @@ class _MedDetailsState extends State<MedDetails> {
                       ),
                     ),
                    const  SizedBox(height: 15),
-                   const Text(
-                      'Price',
+                  Text(
+                      'Price'.tr,
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 15,
@@ -85,8 +86,8 @@ class _MedDetailsState extends State<MedDetails> {
               height: 60,
             ),
             //Scientific name
-            const Text(
-              'Scientific Name',
+             Text(
+              'Scientific Name'.tr,
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 15,
@@ -104,7 +105,7 @@ class _MedDetailsState extends State<MedDetails> {
             //Company Name
             const SizedBox(height: 15),
             Text(
-              'Company',
+              'Company'.tr,
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 15,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:pharma/models/medicine.dart';
 import 'package:pharma/providers/auth_data_provider.dart';
 import 'package:pharma/screens/medicine_details_screen.dart';
@@ -32,7 +33,7 @@ class _MedicinesScreenState extends ConsumerState<OrderScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Nothing in the Cart',
+            'Nothing in the Cart'.tr,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: Theme.of(context).colorScheme.onBackground,
                 ),
@@ -47,7 +48,7 @@ class _MedicinesScreenState extends ConsumerState<OrderScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Your Cart"),
+        title: Text("Your Cart".tr),
         backgroundColor: Color.fromARGB(255, 67, 201, 201),
       ),
       body: content,

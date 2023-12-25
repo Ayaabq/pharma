@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:pharma/providers/auth_data_provider.dart';
 import 'package:pharma/services/order_service.dart';
 
@@ -29,7 +30,7 @@ class OrderButton extends ConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Order'),
+            Text("Order".tr),
           ],
         ),
       ),

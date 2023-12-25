@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:pharma/controllers/search_controller.dart';
-import 'package:pharma/models/category/category_model.dart';
-import 'package:pharma/models/medicine.dart';
-import 'package:pharma/models/search.dart';
-import 'package:pharma/providers/auth_data_provider.dart';
-import 'package:pharma/services/search_service.dart';
+
 
 class SearchTextField extends ConsumerWidget {
  SearchTextField({super.key, required this.onEnter, required this.focusNode});
@@ -37,7 +34,7 @@ class SearchTextField extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(30),
 
               ),
-              labelText: "Search for a medicine or category",
+              labelText: "Search for a medicine or category".tr,
               prefixIcon:const Icon(
                 Icons.search,
                 color:  Color.fromARGB(255, 52, 215, 172),

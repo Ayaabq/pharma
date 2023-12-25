@@ -1,6 +1,7 @@
 // import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:pharma/data/dummy_data_category.dart';
 import 'package:pharma/data/dummy_data_medicine.dart';
 import 'package:pharma/models/category.dart';
@@ -76,9 +77,9 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
     Widget content;
     String title;
     if (_currentIndex == 0) {
-      title = "Categories";
+      title = "Categories".tr;
     } else {
-      title = "your Orders";
+      title = "Orders".tr;
     }
     if (_currentIndex == 0) {
       content = Column(
@@ -123,7 +124,7 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
           Container(
             padding: EdgeInsets.fromLTRB(10, 15, 0, 0),
             child: Text(
-              'Your Category',
+              "Your Category".tr,
               textAlign: TextAlign.start,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
             ),
@@ -196,11 +197,11 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
                 Icons.home,
                 //color: Colors.white,
               ),
-              label: 'Home',
+              label: "home".tr,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.mail),
-              label: 'Orders',
+              label: "Orders".tr,
             ),
           ],
         ),

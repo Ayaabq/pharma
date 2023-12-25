@@ -57,6 +57,7 @@ class AddContainer extends ConsumerWidget {
                 onTap: () {
                   _addItem(ref);
                 },
+                cost: medicine.cost,
               ),
             )
           ],
