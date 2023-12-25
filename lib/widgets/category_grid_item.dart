@@ -18,7 +18,7 @@ class CategoryGridItem extends StatelessWidget {
     return Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         margin: const EdgeInsetsDirectional.symmetric(vertical: 7),
-        color: Colors.greenAccent[100],
+        color: Color.fromARGB(255, 169, 225, 225),
         child: InkWell(
           onTap: () {
             onSelectedCategory(category.id);

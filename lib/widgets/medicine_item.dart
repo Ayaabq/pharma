@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pharma/models/medicine.dart';
 import 'package:pharma/screens/medicine_details_screen.dart';
 
+import '../utils/kcolors_utils.dart';
+
 class MedicineItem extends StatelessWidget {
   const MedicineItem(
       {super.key, required this.medicine, required this.onSelectedMedicine});
@@ -22,22 +24,30 @@ class MedicineItem extends StatelessWidget {
           //         )));
         },
         borderRadius: BorderRadius.circular(16),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 16,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            gradient: LinearGradient(
+              colors: [kblue2, kgreen2],
+            ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                medicine.commercial_name.toString(),
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const SizedBox(
-                height: 4,
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 16,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  medicine.commercial_name.toString(),
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+              ],
+            ),
           ),
         ),
       ),

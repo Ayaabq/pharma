@@ -137,7 +137,7 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
                 return Expanded(
                   child: GridView.builder(
                       itemCount: categories.length,
-                      clipBehavior: Clip.none,
+                     // clipBehavior: Clip.none,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
