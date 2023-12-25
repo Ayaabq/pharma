@@ -6,8 +6,9 @@ import 'package:pharma/models/pair.dart';
 import 'package:pharma/providers/cart_provider.dart';
 import 'package:pharma/widgets/order/adding_item.dart';
 import 'package:pharma/widgets/order/final_add.dart';
-// color: Theme.of(context).colorScheme.surfaceTint,
 
+// color: Theme.of(context).colorScheme.surfaceTint,
+//it's a stless widget
 class AddContainer extends ConsumerWidget {
   AddContainer({
     super.key,
@@ -24,6 +25,7 @@ class AddContainer extends ConsumerWidget {
     for (var a in gg) {
       print(a.first);
       print(a.second.scientific_name);
+
       // cart.map((e) {
       //   //late Pair<int, int> p = Pair(e.first, e.second.id);
       //   //print(e.first);

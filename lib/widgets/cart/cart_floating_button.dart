@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pharma/providers/auth_data_provider.dart';
 import 'package:pharma/screens/order_screen.dart';
+import 'package:pharma/services/order_service.dart';
 
 class CartFloatingButton extends StatelessWidget {
   CartFloatingButton({
@@ -12,6 +15,9 @@ class CartFloatingButton extends StatelessWidget {
     return FloatingActionButton(
       backgroundColor: Colors.teal,
       onPressed: () {
+        // final tokenWathcer = ref.watch(tokenProvider);
+        // await ref.watch(OrderProvider).PostAllOrders(tokenWathcer.toString());
+
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (ctx) => OrderScreen(),

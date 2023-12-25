@@ -6,6 +6,9 @@ import 'package:pharma/screens/medicine_details_screen.dart';
 import 'package:pharma/services/get_medicine_service.dart';
 import 'package:pharma/widgets/medicine_item.dart';
 import 'package:pharma/services/get_medicine_service.dart';
+import 'package:pharma/widgets/order/editing_medicine_order.dart';
+import 'package:pharma/widgets/order/make_order_button.dart';
+import 'package:pharma/data/medicine.dart';
 
 class OrderScreen extends ConsumerStatefulWidget {
   const OrderScreen({
@@ -38,8 +41,8 @@ class _MedicinesScreenState extends ConsumerState<OrderScreen> {
       ),
     );
 
-    if (_Index != 0) {
-      content = Text("hello");
+    if (cart.isNotEmpty) {
+      content = EditingMedicineOrder();
     }
 
     return Scaffold(
