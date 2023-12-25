@@ -13,6 +13,7 @@ import 'package:pharma/services/get_categories_service.dart';
 import 'package:pharma/widgets/cart/cart_floating_button.dart';
 import 'package:pharma/widgets/category_grid_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:pharma/widgets/order_list.dart';
 import 'package:pharma/widgets/search/search_button.dart';
 import 'package:pharma/widgets/side_drawer/main_drawer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -72,62 +73,15 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     final tokenReader = ref.read(tokenProvider);
-    return Scaffold(
-      drawer: MainDrawer(onSelectedScreen: (String a) {}),
-      appBar: AppBar(
-        title: const Text("Categories"),
-        backgroundColor: const Color.fromARGB(255, 67, 201, 201),
-      ),
-      floatingActionButton: CartFloatingButton(
-          // pressedIcon: _pressedCartButton,
-          ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        notchMargin: 5.01,
-        clipBehavior: Clip.antiAlias,
-        child: BottomNavigationBar(
-          selectedItemColor: Colors.white,
-          backgroundColor: Colors.teal,
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-              print(_currentIndex);
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                //color: Colors.white,
-              ),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.mail),
-              label: 'Orders',
-            ),
-          ],
-        ),
-      ),
-      //   floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      //   bottomNavigationBar: BottomNavigationBar(items: [
-      //   BottomNavigationBarItem(
-      //   icon: Icon(Icons.home),
-      //   label: 'Home',
-      // ),
-      // BottomNavigationBarItem(
-      // icon: Icon(Icons.search),
-      // label: 'Search',
-      // ),
-      // BottomNavigationBarItem(
-      // icon: Icon(Icons.person),
-      // label: 'Profile',)
-      //
-      // ],),
-
-      body: Column(
+    Widget content;
+    String title;
+    if (_currentIndex == 0) {
+      title = "Categories";
+    } else {
+      title = "your Orders";
+    }
+    if (_currentIndex == 0) {
+      content = Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -208,7 +162,50 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
             },
           ),
         ],
+      );
+    } else {
+      content = OrderList();
+    }
+    return Scaffold(
+      drawer: MainDrawer(onSelectedScreen: (String a) {}),
+      appBar: AppBar(
+        title: Text(title),
+        backgroundColor: const Color.fromARGB(255, 67, 201, 201),
       ),
+      floatingActionButton: CartFloatingButton(
+          // pressedIcon: _pressedCartButton,
+          ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 5.01,
+        clipBehavior: Clip.antiAlias,
+        child: BottomNavigationBar(
+          selectedItemColor: Colors.white,
+          backgroundColor: Colors.teal,
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+              print(_currentIndex);
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+                //color: Colors.white,
+              ),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.mail),
+              label: 'Orders',
+            ),
+          ],
+        ),
+      ),
+      body: content,
     );
   }
 
