@@ -1,12 +1,13 @@
 import 'dart:convert';
 
+import 'package:pharma/data/IP.dart';
 import 'package:pharma/models/search.dart';
 import 'package:http/http.dart' as http;
 
 class SearchServices {
   Future<Map<int, List<dynamic>>?> serch(
       Search searchModel, String token) async {
-    final url = Uri.parse("http://192.168.193.60:8000/api/search");
+    final url = Uri.parse("http://${IP}:8000/api/search");
     // final url = Uri.parse("http://10.0.2.2:8000/api/search");
 
     final response = await http.post(

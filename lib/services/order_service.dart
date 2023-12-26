@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
+import 'package:pharma/data/IP.dart';
 import 'package:pharma/data/medicine.dart';
 import 'package:pharma/models/category/category_model.dart';
 import 'package:pharma/models/ordermodel.dart';
@@ -27,7 +28,7 @@ class OrderService {
               Products(id: (pair.second.id).toString(), quantity: pair.first))
           .toList(),
     );
-    final Uri url = Uri.parse('http://192.168.193.60:8000/api/order');
+    final Uri url = Uri.parse('http://${IP}:8000/api/order');
     // final Uri url = Uri.parse('http://10.0.2.2:8000/api/order');
     final Map<String, dynamic> orderMap = order.toJson();
     http.Response response = await http.post(

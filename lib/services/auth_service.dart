@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:pharma/data/IP.dart';
 import 'package:pharma/models/rigex/login.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma/models/rigex/register.dart';
@@ -37,7 +38,7 @@ class AuthServices {
   }
 
   Future<LoginModel?> getUser(LoginModel login) async {
-    final url = Uri.parse("http://192.168.193.60:8000/api/login");
+    final url = Uri.parse("http://${IP}:8000/api/login");
     // final url = Uri.parse("http://10.0.2.2:8000/api/login");
     print(login.toJson());
     final response = await http.post(
