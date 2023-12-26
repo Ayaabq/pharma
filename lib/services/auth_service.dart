@@ -30,14 +30,15 @@ class AuthServices {
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
-      error=jsonDecode(response.body)["message"].toString();
+      error = jsonDecode(response.body)["message"].toString();
       print(error);
       return null;
     }
   }
 
   Future<LoginModel?> getUser(LoginModel login) async {
-    final url = Uri.parse("http://10.0.2.2:8000/api/login");
+    final url = Uri.parse("http://192.168.193.60:8000/api/login");
+    // final url = Uri.parse("http://10.0.2.2:8000/api/login");
     print(login.toJson());
     final response = await http.post(
       url,
@@ -57,7 +58,7 @@ class AuthServices {
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
-      error=jsonDecode(response.body)["message"].toString();
+      error = jsonDecode(response.body)["message"].toString();
       print(error);
       return null;
     }

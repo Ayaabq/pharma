@@ -4,11 +4,10 @@ import 'package:pharma/models/category/category_model.dart';
 
 class AllCategoryService {
   Future<List<CategoryModel>> getAllCategory(String token) async {
-
-
-    http.Response response = await http.get(
-        Uri.parse("http://10.0.2.2:8000/api/admin/getCategories"),
-        headers: {'Authorization': 'Bearer $token'});
+    http.Response response = await http
+        .get(Uri.parse("http://192.168.193.60:8000/api/admin/getCategories"),
+            // Uri.parse("http://10.0.2.2:8000/api/admin/getCategories"),
+            headers: {'Authorization': 'Bearer $token'});
 
     List<dynamic> data = jsonDecode(response.body);
 
@@ -17,7 +16,6 @@ class AllCategoryService {
       categoryList.add(
         CategoryModel.fromJson(data[i]),
       );
-
     }
     return categoryList;
   }

@@ -9,9 +9,10 @@ class AllMedicineService {
   Future<List<MedicineModel>> getAllMedicine(String token, int id) async {
     print('hello medicine 1');
 
-    http.Response response = await http.get(
-        Uri.parse("http://10.0.2.2:8000/api/admin/getProduct"),
-        headers: {'Authorization': 'Bearer $token'});
+    http.Response response = await http
+        .get(Uri.parse("http://192.168.193.60:8000/api/admin/getProduct"),
+            // Uri.parse("http://10.0.2.2:8000/api/admin/getProduct"),
+            headers: {'Authorization': 'Bearer $token'});
     print(response.statusCode);
     print('hello2');
     List<dynamic> data = jsonDecode(response.body);

@@ -19,7 +19,7 @@ class DrawerOption extends StatelessWidget {
   bool isToggle;
   @override
   Widget build(BuildContext context) {
-    MyLocalController langCtr=Get.find();
+    MyLocalController langCtr = Get.find();
     return ListTile(
       leading: Icon(
         icon,
@@ -31,20 +31,20 @@ class DrawerOption extends StatelessWidget {
           Text(
             title,
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                color: Theme.of(context).colorScheme.onBackground, fontSize: 24),
+                color: Theme.of(context).colorScheme.onBackground,
+                fontSize: 24),
           ),
-          if(isToggle)
+          if (isToggle)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: SwitcherButton(
-                onColor: kblue2,
-                offColor: Colors.grey[100]!,
-                value: langCtr.getCurrentLocale().languageCode =="ar",
+                offColor: kblue2,
+                onColor: Color.fromARGB(255, 100, 150, 150)!,
+                value: langCtr.getCurrentLocale().languageCode == "ar",
                 onChange: (value) {
-                  if(langCtr.getCurrentLocale().languageCode =="ar"){
+                  if (langCtr.getCurrentLocale().languageCode == "ar") {
                     langCtr.changeLang("en");
-                  }
-                  else {
+                  } else {
                     langCtr.changeLang("ar");
                   }
                 },

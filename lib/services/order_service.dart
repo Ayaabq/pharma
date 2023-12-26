@@ -27,7 +27,8 @@ class OrderService {
               Products(id: (pair.second.id).toString(), quantity: pair.first))
           .toList(),
     );
-    final Uri url = Uri.parse('http://10.0.2.2:8000/api/order');
+    final Uri url = Uri.parse('http://192.168.193.60:8000/api/order');
+    // final Uri url = Uri.parse('http://10.0.2.2:8000/api/order');
     final Map<String, dynamic> orderMap = order.toJson();
     http.Response response = await http.post(
       url,
