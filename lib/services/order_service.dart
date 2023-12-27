@@ -22,10 +22,12 @@ class OrderService {
     container.read(userProvider.notifier).setUser(user);
     final userId = container.read(userProvider)?.id;
     final order = Ordermodel(
-      userId: userId,
+      userId: (userId).toString(),
+      orderPrice: 200,
       products: cart
-          .map((pair) =>
-              Products(id: (pair.second.id).toString(), quantity: pair.first))
+          .map((pair) => Products(
+              id: (pair.second.id).toString(),
+              quantity: (pair.first).toString()))
           .toList(),
     );
     final Uri url = Uri.parse('http://${IP}:8000/api/order');
