@@ -5,7 +5,8 @@ import 'package:pharma/providers/cart_provider.dart';
 import 'package:pharma/widgets/order/make_order_button.dart';
 
 class EditingMedicineOrder extends ConsumerStatefulWidget {
-  const EditingMedicineOrder({super.key});
+  EditingMedicineOrder({super.key, required this.rebuilt});
+  void Function() rebuilt;
 
   @override
   ConsumerState<EditingMedicineOrder> createState() =>
@@ -30,11 +31,22 @@ class _EditingMedicineOrderState extends ConsumerState<EditingMedicineOrder> {
                       child: Stack(
                         children: [
                           // Medicine Name
-                          Text(
-                            cart[index].second.commercial_name,
-                            style: TextStyle(fontSize: 20.0),
-                            textAlign: TextAlign.center,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                cart[index].second.commercial_name,
+                                style: TextStyle(fontSize: 20.0),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                'Price: ${(cart[index].second.cost * cart[index].first).toString()}\$',
+                                style: TextStyle(fontSize: 14.0),
+                                textAlign: TextAlign.start,
+                              ),
+                            ],
                           ),
+
                           // Icons on the right
                           Positioned(
                             top: 0,
@@ -55,6 +67,8 @@ class _EditingMedicineOrderState extends ConsumerState<EditingMedicineOrder> {
                                         ref
                                             .watch(cartProvider.notifier)
                                             .deleteEelement(cart[index].second);
+
+                                        widget.rebuilt();
                                       }
                                     });
 
@@ -66,10 +80,12 @@ class _EditingMedicineOrderState extends ConsumerState<EditingMedicineOrder> {
                                   icon: Icon(Icons.delete),
                                   onPressed: () {
                                     // Handle delete
+
                                     setState(() {
                                       ref
                                           .watch(cartProvider.notifier)
                                           .deleteEelement(cart[index].second);
+                                      widget.rebuilt();
                                       // medicineNames.removeAt(medicineNames.indexOf(medicineName));
                                     });
                                   },

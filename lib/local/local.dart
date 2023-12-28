@@ -24,6 +24,12 @@ class MyLocal extends Translations {
           'Company': "الشركة المصنعة",
           'Details': "التفاصيل",
           'noOrders': 'لا يوجد طلبات',
+          'Order Details': 'تفاصيل الطلب',
+          'Status': 'حالة الطلبية',
+          'Payment Status': 'حالة الدفع',
+          'Total Price': 'المبلغ الإجمالي',
+          'Products': 'الأدوية',
+          'Quantity': 'الكمية'
         },
         "en": {
           "home": "Home page",
@@ -47,6 +53,12 @@ class MyLocal extends Translations {
           'Scientific Name': 'Scientific Name',
           'Details': 'Details',
           'noOrders': 'There are no orders',
+          'Order Details': 'Order Details',
+          'Status': 'Status',
+          'Payment Status': 'Payment Status',
+          'Total Price': 'Total Price',
+          'Products': 'Products',
+          'Quantity': 'Quantity',
         }
       };
 }

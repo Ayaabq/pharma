@@ -43,7 +43,11 @@ class _MedicinesScreenState extends ConsumerState<OrderScreen> {
     );
 
     if (cart.isNotEmpty) {
-      content = EditingMedicineOrder();
+      content = EditingMedicineOrder(
+        rebuilt: () {
+          setState(() {});
+        },
+      );
     }
 
     return Scaffold(

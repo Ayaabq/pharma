@@ -8,6 +8,8 @@ import 'package:pharma/services/get_medicine_service.dart';
 import 'package:pharma/widgets/medicine_item.dart';
 import 'package:pharma/services/get_medicine_service.dart';
 
+import '../providers/value.dart';
+
 class MedicinesScreen extends ConsumerStatefulWidget {
   MedicinesScreen({super.key, required this.title, required this.medicines});
   final String title;
@@ -19,6 +21,8 @@ class MedicinesScreen extends ConsumerStatefulWidget {
 
 class _MedicinesScreenState extends ConsumerState<MedicinesScreen> {
   void _selectMedicine(MedicineModel medicine, int id, WidgetRef ref) async {
+    ref.watch(valueProvider.notifier).restValue();
+
     final tokenWathcer = ref.watch(tokenProvider);
     final medicineDetailsWatcher = await ref
         .watch(medicineProvider)

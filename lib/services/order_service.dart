@@ -11,19 +11,23 @@ import '../providers/user_provider.dart';
 
 class OrderService {
   Future<http.Response> PostAllOrders(
-    //Ordermodel order,
-    String token,
-  ) async {
+      //Ordermodel order,
+      String token,
+      int userId) async {
     print('hello');
-    final container = ProviderContainer();
-    final user = User(id: 2); // Replace '1' with the actual user ID
+    // final container = ProviderContainer();
+    // final user = User(id: 2); // Replace '1' with the actual user ID
 
     // Update the user in the userProvider
-    container.read(userProvider.notifier).setUser(user);
-    final userId = container.read(userProvider)?.id;
+    // container.read(userProvider);
+    // final userId = container.read(userProvider)?.id;
+    int orderPrice = 0;
+    for (var e in cart) {
+      orderPrice += e.first * e.second.cost;
+    }
     final order = Ordermodel(
       userId: (userId).toString(),
-      orderPrice: 200,
+      orderPrice: orderPrice,
       products: cart
           .map((pair) => Products(
               id: (pair.second.id).toString(),

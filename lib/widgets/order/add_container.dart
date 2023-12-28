@@ -1,26 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:pharma/data/medicine.dart';
 import 'package:pharma/models/medicine.dart';
 import 'package:pharma/models/pair.dart';
 import 'package:pharma/providers/cart_provider.dart';
+import 'package:pharma/providers/value.dart';
 import 'package:pharma/widgets/order/adding_item.dart';
 import 'package:pharma/widgets/order/final_add.dart';
 
 // color: Theme.of(context).colorScheme.surfaceTint,
 //it's a stless widget
-class AddContainer extends ConsumerWidget {
+class AddContainer extends ConsumerStatefulWidget {
   AddContainer({
     super.key,
     required this.medicine,
   });
   MedicineModel medicine;
 
+  @override
+  ConsumerState<AddContainer> createState() => _AddContainerState();
+}
+
+class _AddContainerState extends ConsumerState<AddContainer> {
   void _addItem(WidgetRef ref) {
     int quantity = value;
     value = 1;
+    ref.watch(valueProvider.notifier).restValue();
     final cartWatcher =
-        ref.watch(cartProvider.notifier).addItem(medicine, quantity);
+        ref.watch(cartProvider.notifier).addItem(widget.medicine, quantity);
     final gg = ref.watch(cartProvider);
     for (var a in gg) {
       print(a.first);
@@ -34,7 +42,7 @@ class AddContainer extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
         height: 150,
@@ -49,15 +57,20 @@ class AddContainer extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             AddItemButton(
-              quantityLimit: medicine.quantity_available,
+              quantityLimit: widget.medicine.quantity_available,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
               child: FinalAddButton(
                 onTap: () {
                   _addItem(ref);
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('Product has been added to the cart'),
+                  ));
+                  Navigator.of(context).pop();
                 },
-                cost: medicine.cost,
+                cost: widget.medicine.cost,
+                orderedqu: value,
               ),
             )
           ],

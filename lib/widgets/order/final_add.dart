@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:pharma/providers/value.dart';
 
 import '../../data/medicine.dart';
 
-class FinalAddButton extends StatefulWidget {
- FinalAddButton({super.key, required this.onTap, required this.cost});
-    void Function() onTap;
-    int cost;
+class FinalAddButton extends ConsumerStatefulWidget {
+  FinalAddButton(
+      {super.key,
+      required this.onTap,
+      required this.cost,
+      required this.orderedqu});
+  void Function() onTap;
+  int cost;
+  int orderedqu;
   @override
-  State<FinalAddButton> createState() => _FinalAddButtonState();
+  ConsumerState<FinalAddButton> createState() => _FinalAddButtonState();
 }
 
-class _FinalAddButtonState extends State<FinalAddButton> {
+class _FinalAddButtonState extends ConsumerState<FinalAddButton> {
   @override
   Widget build(BuildContext context) {
+    final valueWatcher = ref.watch(valueProvider);
+
     return GestureDetector(
-      onTap: widget.onTap,
+      onTap: () {
+        widget.onTap();
+      },
       child: Container(
         width: double.infinity,
         height: 55,
@@ -26,11 +37,15 @@ class _FinalAddButtonState extends State<FinalAddButton> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
-        Text("Add to Cart".tr),
-      SizedBox(width: 15,),
-        Text("${widget.cost*value}"),
-      ],),),
+            Text("Add to Cart".tr),
+            SizedBox(
+              width: 10,
+            ),
+            //Text(value.toString()),
+            Text("${(widget.cost * valueWatcher).toString()}"),
+          ],
+        ),
+      ),
     );
   }
 }

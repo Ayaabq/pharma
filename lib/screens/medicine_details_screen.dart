@@ -24,7 +24,7 @@ class _MedDetailsState extends State<MedDetails> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 67, 201, 201),
-        title:  Text('Details'.tr),
+        title: Text('Details'.tr),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 40, horizontal: 30),
@@ -44,7 +44,7 @@ class _MedDetailsState extends State<MedDetails> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     Text(
+                    Text(
                       'Medicine Name'.tr,
                       style: TextStyle(
                         color: Colors.grey,
@@ -52,7 +52,7 @@ class _MedDetailsState extends State<MedDetails> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                   const  SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text(
                       widget.medicine.commercial_name.toString(),
                       //medicine.name.toString(),
@@ -61,8 +61,8 @@ class _MedDetailsState extends State<MedDetails> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                   const  SizedBox(height: 15),
-                  Text(
+                    const SizedBox(height: 15),
+                    Text(
                       'Price'.tr,
                       style: TextStyle(
                         color: Colors.grey,
@@ -70,7 +70,7 @@ class _MedDetailsState extends State<MedDetails> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                   const SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text(
                       '${widget.medicine.cost.toString()}\$',
                       style: TextStyle(
@@ -86,7 +86,7 @@ class _MedDetailsState extends State<MedDetails> {
               height: 60,
             ),
             //Scientific name
-             Text(
+            Text(
               'Scientific Name'.tr,
               style: TextStyle(
                 color: Colors.grey,
@@ -123,9 +123,7 @@ class _MedDetailsState extends State<MedDetails> {
             //spacer to the end of the screen
             const Spacer(),
 
-
-               AddContainer(medicine: widget.medicine),
-
+            AddContainer(medicine: widget.medicine),
           ],
         ),
       ),

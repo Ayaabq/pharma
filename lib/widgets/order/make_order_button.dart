@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:pharma/providers/auth_data_provider.dart';
+import 'package:pharma/providers/user_provider.dart';
 import 'package:pharma/services/order_service.dart';
 
 import '../../providers/cart_provider.dart';
@@ -17,8 +18,15 @@ class OrderButton extends ConsumerWidget {
     return InkWell(
       onTap: () async {
         final tokenWathcer = ref.watch(tokenProvider);
-        await ref.watch(OrderProvider).PostAllOrders(tokenWathcer.toString());
+        final userWatcher = ref.watch(userProvider);
+        await ref
+            .watch(OrderProvider)
+            .PostAllOrders(tokenWathcer.toString(), userWatcher!.id!.toInt());
         ref.watch(cartProvider.notifier).resetData();
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Your order has been added'),
+        ));
+        Navigator.of(context).pop();
       },
       child: Container(
         width: double.infinity,

@@ -191,9 +191,9 @@ class _OrderListState extends ConsumerState<OrderList> {
                 ),
               );
             } else {
-              return const Center(
+              return Center(
                 child: Text(
-                  'There are no orders',
+                  'noOrders'.tr,
                 ),
               );
             }

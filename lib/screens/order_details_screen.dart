@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pharma/models/order_details_model.dart';
 import 'package:pharma/screens/order_screen.dart';
 
@@ -112,23 +113,23 @@ class ProductsDetailsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order Details'),
+        title: Text('Order Details'.tr),
         backgroundColor: Color.fromARGB(255, 67, 201, 201),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ListTile(
-            title: Text('Status: ${orderData.status}'),
+            title: Text('${'Status'.tr}: ${orderData.status}'),
           ),
           ListTile(
-            title: Text('Payment Status: ${orderData.paymentStatus}'),
+            title: Text('${'Payment Status'.tr}: ${orderData.paymentStatus}'),
           ),
           ListTile(
-            title: Text('Total Price: ${orderData.orderPrice}'),
+            title: Text('${'Total Price'.tr}: ${orderData.orderPrice}'),
           ),
           Divider(),
-          Text('Products:'),
+          Text('${'Products'.tr}:'),
           Expanded(
             child: ListView.builder(
               itemCount: orderData.products?.length ?? 0,
@@ -136,9 +137,10 @@ class ProductsDetailsScreen extends StatelessWidget {
                 Products product = orderData.products![index];
                 return ListTile(
                   title: Text(product.commercialName!),
-                  subtitle: Text('Quantity: ${product.pivot!.quantity}'),
+                  subtitle:
+                      Text('${'Quantity'.tr}: ${product.pivot!.quantity}'),
                   trailing: Text(
-                      'Price: ${product.pivot!.quantity! * product.cost!}'),
+                      '${'Price'.tr}: ${product.pivot!.quantity! * product.cost!}'),
                 );
               },
             ),
