@@ -6,7 +6,7 @@ class MedicineModel {
   final String company;
   final int quantity_available;
   var createdat;
-  final int cost;
+  final num cost;
 
   MedicineModel({
     required this.id,

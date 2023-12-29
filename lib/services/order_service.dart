@@ -21,7 +21,7 @@ class OrderService {
     // Update the user in the userProvider
     // container.read(userProvider);
     // final userId = container.read(userProvider)?.id;
-    int orderPrice = 0;
+   double orderPrice = 0;
     for (var e in cart) {
       orderPrice += e.first * e.second.cost;
     }

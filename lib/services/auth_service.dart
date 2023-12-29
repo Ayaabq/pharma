@@ -11,7 +11,7 @@ import '../data/error_message.dart';
 
 class AuthServices {
   Future<RegisterModel?> createUser(RegisterModel register) async {
-    final url = Uri.parse("http://10.0.2.2:8000/api/register");
+    final url = Uri.parse("http://${IP}:8000/api/register");
     final response = await http.post(
       url,
       headers: <String, String>{
@@ -66,7 +66,7 @@ class AuthServices {
   }
 
   Future<int> deleteToken(String token) async {
-    final url = "http://10.0.2.2:8000/api/logout";
+    final url = "http://${IP}:8000/api/logout";
     final response = await http.post(
       Uri.parse(url),
       headers: {'Authorization': 'Bearer $token'},

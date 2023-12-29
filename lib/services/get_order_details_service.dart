@@ -64,10 +64,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:pharma/models/order_details_model.dart';
 
+import '../data/IP.dart';
+
 Future<List<Data>> getOrderDetails(
   String token,
 ) async {
-  final String apiUrl = 'http://10.0.2.2:8000/api/getOrderDetailsid';
+  final String apiUrl = 'http://${IP}:8000/api/getOrderDetailsid';
 
   try {
     final response = await http

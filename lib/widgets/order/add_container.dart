@@ -69,7 +69,7 @@ class _AddContainerState extends ConsumerState<AddContainer> {
                   ));
                   Navigator.of(context).pop();
                 },
-                cost: widget.medicine.cost,
+                cost: widget.medicine.cost.toDouble(),
                 orderedqu: value,
               ),
             )

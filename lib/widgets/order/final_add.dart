@@ -12,7 +12,7 @@ class FinalAddButton extends ConsumerStatefulWidget {
       required this.cost,
       required this.orderedqu});
   void Function() onTap;
-  int cost;
+  double cost;
   int orderedqu;
   @override
   ConsumerState<FinalAddButton> createState() => _FinalAddButtonState();

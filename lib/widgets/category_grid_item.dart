@@ -26,16 +26,19 @@ class CategoryGridItem extends StatelessWidget {
           //splashColor: category.color,
           borderRadius: BorderRadius.circular(16),
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 34,
-            ),
-            child: Text(
-              category.name.toString(),
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Colors.black,
-                    //color: Theme.of(context).colorScheme.onBackground,
-                  ),
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+
+                maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                category.name.toString(),
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      color: Colors.black,
+
+                      //color: Theme.of(context).colorScheme.onBackground,
+                    ),
+              ),
             ),
           ),
         ));

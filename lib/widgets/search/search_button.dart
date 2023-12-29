@@ -13,16 +13,20 @@ class SearchButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){_onSearch(context);},
-      child:  Row(
-        children: [
-          Icon(
-            Icons.search,
-          ),
-          Text(
-            "Search for a medicine or category".tr,
-            style: TextStyle(fontSize: 16),
-          ),
-        ],
+      child:  Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50.0)),
+        child: Row(
+          children: [
+            Icon(
+              Icons.search,
+            ),
+            Text(
+              "Search for a medicine or category".tr,
+              style: TextStyle(fontSize: 14),
+            ),
+          ],
+        ),
       ),
     );
   }

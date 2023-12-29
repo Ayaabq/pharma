@@ -22,7 +22,7 @@ class AllMedicineService {
     List<MedicineModel> medicineList = [];
     print('hello4');
     for (int i = 0; i < data.length; i++) {
-      print(MedicineModel.fromJson(data[i]).category_id);
+      //print(MedicineModel.fromJson(data[i]).category_id);
       if ((MedicineModel.fromJson(data[i]).category_id) == id) {
         medicineList.add(
           MedicineModel.fromJson(data[i]),
