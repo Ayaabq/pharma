@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "440110607280",
+    "project_id": "pharmanoti",
+    "storage_bucket": "pharmanoti.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440110607280:android:5c7f338bcdf1d04e520475",
+        "android_client_info": {
+          "package_name": "com.example.pharma"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOENscdjmKb5zLiWmCZbvSeF9uDPHM44k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

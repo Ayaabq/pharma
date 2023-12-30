@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
@@ -6,11 +7,25 @@ import 'package:pharma/local/local_controller.dart';
 import 'package:pharma/screens/categories.dart';
 
 import 'package:pharma/screens/rigex_screens/splash.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'method.dart';
 
 var kColorScheme =
     ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 67, 201, 201));
 
-void main() {
+Future<void> main() async {
+
+
+// ...
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  //)//.then(
+          //(FirebaseApp value) => Get.put(AuthenticationRepository())
+  );
+  FirebaseMessaging.instance.getToken().then((value) => print(value));
+  listenOnNotifications();
   runApp(ProviderScope(child: MyApp()));
 }
 

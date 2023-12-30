@@ -50,6 +50,10 @@ dependencies:
   getx_translator: ^1.0.3
   get: ^4.6.6
   switcher_button: ^0.0.4
+  # Firebase
+  firebase_core: ^2.24.2
+  firebase_messaging: ^14.7.9
+  shared_preferences: ^2.2.2
 
 
 
