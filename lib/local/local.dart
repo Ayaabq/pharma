@@ -59,6 +59,7 @@ class MyLocal extends Translations {
           'Total Price': 'Total Price',
           'Products': 'Products',
           'Quantity': 'Quantity',
+          'Expiration date':'Expiration date'
         }
       };
 }

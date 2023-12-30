@@ -1,4 +1,5 @@
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma/models/rigex/register.dart';
@@ -44,14 +45,19 @@ class RegisterScreen extends ConsumerWidget {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       // making the api model to use it for connecting with baackend
-
+      String fCM = await FirebaseMessaging.instance.getToken()?? ""
+          //"dGL8U5uSR0yLLRKO0lzVUp:APA91bFRSUaTO4S_-T2pWNvedeEs9OdPKAklMMy9GtgOwDvUzQP-AG_mAoJJcYevag0yqZjP_dKI8izoKCO-H8h_bhQeLo2n_5wm6oQiGb0yqA-SkURKsiJECaJjQxySDk776cUEoJWU"
+      ;
       registerModel = RegisterModel(
           user: User(
         phone: RegisterController.phoneController.text.toString(),
         email: RegisterController.emailController.text.toString(),
         password: RegisterController.passwordController.text.toString(),
         name: RegisterController.userNameController.text.toString(),
-      ));
+
+      ),
+      fcm_token:  fCM,
+      );
 
       // calling the api function
       final _authWatcher =
@@ -59,7 +65,8 @@ class RegisterScreen extends ConsumerWidget {
 
     if(error==null){
       ref.watch(userProvider.notifier).setUser(_authWatcher!.user!);
-      ref.watch(tokenProvider.notifier).setToken(_authWatcher.token!);
+
+     await ref.watch(tokenProvider.notifier).setToken(_authWatcher.token!,  _authWatcher.user!.id!.toInt(),  _authWatcher.user!.name!);
       //  await AuthServices().createUser(registerModel);
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
         return const CategoriesScreen();

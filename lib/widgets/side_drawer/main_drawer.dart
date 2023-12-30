@@ -14,6 +14,7 @@ class MainDrawer extends ConsumerWidget {
   void _onLogOut(WidgetRef ref, BuildContext context) async{
     final tokenWatcher= ref.watch(tokenProvider);
     ref.watch(authProvider).deleteToken(tokenWatcher.toString());
+    ref.watch(tokenProvider.notifier).deleteToken(ref);
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx)=>LoginScreen()));
   }
 

@@ -101,7 +101,10 @@ class _EditingMedicineOrderState extends ConsumerState<EditingMedicineOrder> {
 
               ),
         ),
-        OrderButton(),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: OrderButton(),
+        ),
       ],
     );
   }

@@ -7,9 +7,11 @@ class RegisterModel {
   RegisterModel({
     User? user,
     String? token,
+    String? fcm_token,
   }) {
     _user = user;
     _token = token;
+    _fcm_token=fcm_token;
   }
 
   RegisterModel.fromJson(dynamic json) {
@@ -18,16 +20,20 @@ class RegisterModel {
   }
   User? _user;
   String? _token;
+  String? _fcm_token;
   RegisterModel copyWith({
     User? user,
     String? token,
+    String? fcm_token,
   }) =>
       RegisterModel(
         user: user ?? _user,
         token: token ?? _token,
+        fcm_token: fcm_token??_fcm_token
       );
   User? get user => _user;
   String? get token => _token;
+  String? get fcm_token => _fcm_token;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -35,6 +41,7 @@ class RegisterModel {
       map['user'] = _user?.toJson();
     }
     map['token'] = _token;
+    map['fcm_token']= _fcm_token;
     return map;
   }
 }

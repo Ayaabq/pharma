@@ -24,7 +24,7 @@ Future<void> main() async {
   //)//.then(
           //(FirebaseApp value) => Get.put(AuthenticationRepository())
   );
-  FirebaseMessaging.instance.getToken().then((value) => print(value));
+  // FirebaseMessaging.instance.getToken().then((value) => print(value));
   listenOnNotifications();
   runApp(ProviderScope(child: MyApp()));
 }
@@ -39,8 +39,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     Get.put(MyLocalController());
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData().copyWith(
           //useMaterial3: true,
+
           colorScheme: kColorScheme,
           appBarTheme: const AppBarTheme().copyWith(
             backgroundColor: kColorScheme.onPrimaryContainer,

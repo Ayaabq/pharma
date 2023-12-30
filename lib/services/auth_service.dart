@@ -12,6 +12,8 @@ import '../data/error_message.dart';
 class AuthServices {
   Future<RegisterModel?> createUser(RegisterModel register) async {
     final url = Uri.parse("http://${IP}:8000/api/register");
+    Map<String, dynamic> mp=register.user!.toJson();
+    mp['fcm_token']= register.fcm_token;
     final response = await http.post(
       url,
       headers: <String, String>{
@@ -19,7 +21,8 @@ class AuthServices {
         'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
         'Content-Type': 'application/json',
       },
-      body: json.encode(register.user?.toJson()),
+
+      body: json.encode(mp),
     );
     print(register.toJson().toString());
     print(response.body);

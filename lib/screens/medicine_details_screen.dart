@@ -10,7 +10,7 @@ import 'package:pharma/widgets/order/add_container.dart';
 
 class MedDetails extends StatefulWidget {
   const MedDetails({
-    super.key,
+    Key? key,
     required this.medicine,
   });
   final MedicineModel medicine;
@@ -19,6 +19,10 @@ class MedDetails extends StatefulWidget {
 }
 
 class _MedDetailsState extends State<MedDetails> {
+  String truncateText(String text, int maxLength) {
+    return text.length <= maxLength ? text : text.substring(0, maxLength) + '...';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +32,6 @@ class _MedDetailsState extends State<MedDetails> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 40, horizontal: 30),
-        //padding: EdgeInsets.all(30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -54,8 +57,7 @@ class _MedDetailsState extends State<MedDetails> {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      widget.medicine.commercial_name.toString(),
-                      //medicine.name.toString(),
+                      truncateText(widget.medicine.commercial_name.toString(), 25),
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -85,7 +87,6 @@ class _MedDetailsState extends State<MedDetails> {
             SizedBox(
               height: 60,
             ),
-            //Scientific name
             Text(
               'Scientific Name'.tr,
               style: TextStyle(
@@ -96,13 +97,12 @@ class _MedDetailsState extends State<MedDetails> {
             ),
             const SizedBox(height: 5),
             Text(
-              widget.medicine.scientific_name.toString(),
+              truncateText(widget.medicine.scientific_name.toString(), 25),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            //Company Name
             const SizedBox(height: 15),
             Text(
               'Company'.tr,
@@ -114,15 +114,30 @@ class _MedDetailsState extends State<MedDetails> {
             ),
             const SizedBox(height: 5),
             Text(
-              widget.medicine.company.toString(),
+              truncateText(widget.medicine.company.toString(), 25),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            //spacer to the end of the screen
+            const SizedBox(height: 15),
+            Text(
+              'Expiration date'.tr,
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 5),
+            Text(
+              truncateText(widget.medicine.createdat.toString(), 25),
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const Spacer(),
-
             AddContainer(medicine: widget.medicine),
           ],
         ),

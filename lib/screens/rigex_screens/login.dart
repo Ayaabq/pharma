@@ -45,7 +45,7 @@ class LoginScreen extends ConsumerWidget {
       final _authWatcher = await ref.watch(authProvider).getUser(login);
       if(error==null) {
         ref.watch(userProvider.notifier).setUser(_authWatcher!.user!);
-        ref.watch(tokenProvider.notifier).setToken(_authWatcher.token!);
+        await ref.watch(tokenProvider.notifier).setToken(_authWatcher.token!, _authWatcher.user!.id!.toInt(), _authWatcher.user!.name!);
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
           return const CategoriesScreen();
           //return HomeScreen();
