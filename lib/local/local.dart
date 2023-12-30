@@ -29,7 +29,8 @@ class MyLocal extends Translations {
           'Payment Status': 'حالة الدفع',
           'Total Price': 'المبلغ الإجمالي',
           'Products': 'الأدوية',
-          'Quantity': 'الكمية'
+          'Quantity': 'الكمية',
+          'Expired Date': 'تاريخ الصلاحية',
         },
         "en": {
           "home": "Home page",
@@ -59,7 +60,9 @@ class MyLocal extends Translations {
           'Total Price': 'Total Price',
           'Products': 'Products',
           'Quantity': 'Quantity',
-          'Expiration date':'Expiration date'
+
+          'Expired Date': 'Expired Date',
+
         }
       };
 }

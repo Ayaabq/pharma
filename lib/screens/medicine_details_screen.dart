@@ -120,9 +120,10 @@ class _MedDetailsState extends State<MedDetails> {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            //Expired Date
             const SizedBox(height: 15),
             Text(
-              'Expiration date'.tr,
+              '${'Expired Date'.tr}',
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 15,
@@ -131,12 +132,14 @@ class _MedDetailsState extends State<MedDetails> {
             ),
             const SizedBox(height: 5),
             Text(
-              truncateText(widget.medicine.createdat.toString(), 25),
+              widget.medicine.createdat.toString(),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
+            //spacer to the end of the screen
+
             const Spacer(),
             AddContainer(medicine: widget.medicine),
           ],
